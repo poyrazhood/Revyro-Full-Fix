@@ -1,0 +1,234 @@
+{% include 'main/bootstrap/header.twig' %}
+
+{% if user['auth'] %}
+
+{% else %}
+    <style>.app-content {
+            padding-left: 0
+        }</style>
+
+    <div class="home-head">
+        <div class="home-head-bg" style="height:125px"></div>
+    </div>
+{% endif %}
+<div class="app-content mt-5">
+    <div class="{% if user['auth'] %} container-fluid {% else %} container {% endif %}">
+        <div class="row">
+            <div class="col-lg-12">
+            {% if user['auth'] %}
+                <div class="top-notice d-flex align-items-center">
+                    <i class="ri-shopping-cart-line"></i>
+                    <span class="pl-3"><strong>Servis Listesi</strong><br>Sipariş vermeden önce açıklamaları okuyun.</span>
+                </div>
+                {% endif %}
+                <section class="order-side">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 mb-5 mb-lg-0">
+                            <div class="d-card mb-3">
+                                <div class="d-card-body">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3 mb-md-0">
+                                            <div class="dropdown">
+                                                <select onchange="filtereKategori()" id="kategori_filtre"
+                                                        class="form-control" style="width:100%!important;">
+                                                    <option value="All">Kategori Filtrele (Filtre Seçilmedi)</option>
+                                                    {% for category in serviceCategory %}
+                                                        <option value="{{ category["category_name"]|replace({' ':'-'}) }}">{{ category["category_name"] }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8 mb-3">
+                                            <div class="input-group">
+                                                <input type="text" onkeyup="filtrele()" id="serv-inp"
+                                                       class="form-control"
+                                                       placeholder="Aramak istediğiniz servisi yazınız.">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-12">
+                                            <div class="table-service-head">
+                                                <div class="table-services-row">
+                                                    <div class="table-service-id">{{ lang['services.id'] }}</div>
+                                                    <div class="table-service-name">{{ lang['services.name'] }}</div>
+                                                    <div class="table-service-per">{{ lang['services.price'] }}</div>
+                                                    <div class="table-service-min">Min</div>
+                                                    <div class="table-service-max">Max</div>
+                                                    {% if avarageTime %}
+                                                        <div class="table-service-avg">{{ lang['services.avarage'] }}</div>
+                                                    {% endif %}
+                                                    <div class="table-service-des">{{ lang['neworder.description'] }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="services-all">
+                                                {% for category in serviceCategory %}
+                                                    <div class="table-service-title">
+                                                        <span>{{ category["category_name"] }}</span>
+                                                    </div>
+                                                    {% for service in category['services'] %}
+                                                        <div class="table-service-item" id="servisDetay"
+                                                             data-kategori="{{ category["category_name"]|replace({' ':'-'}) }}">
+                                                            <div class="table-services-row">
+                                                                <div class="table-service-id">
+                                                                    <div class="table-service-id-box">{{ service["service_id"] }}</div>
+                                                                </div>
+                                                                {% if user['auth'] %}
+                                                                <div class="table-service-id">
+                                                                    <a class="table-service-id-box" href="javascript::void(0)" data-id="{{service["service_id"]}}" id="favori_ekle_glycon" ><i class="far fa-star glycon-fni"></i></a>
+                                                                </div>{% endif %}
+                                                                <div class="table-service-name">
+                                                                    <div class="table-service-m-title">{{ lang['services.name'] }}</div>
+                                                                    {{ service["service_name"] }}
+                                                                </div>
+                                                                <div class="table-service-per">
+                                                                    <div class="table-service-m-title">{{ lang['services.price'] }}</div>
+                                                                    {{ service["service_price"] }}
+                                                                </div>
+                                                                <div class="table-service-min">
+                                                                    <div class="table-service-m-title">Min</div>
+                                                                    {{ service["service_min"] }}
+                                                                </div>
+                                                                <div class="table-service-max">
+                                                                    <div class="table-service-m-title">Max</div>
+                                                                    {{ service["service_max"] }}
+                                                                </div>
+                                                                {% if avarageTime %}
+                                                                    <div class="table-service-avg">
+                                                                        <div class="table-service-m-title">{{ lang['services.avarage'] }}</div>
+                                                                        {{ service["service_speed"] }}
+                                                                    </div>
+                                                                {% endif %}
+                                                                <div class="table-service-desc">
+                                                                    <button data-toggle="modal"
+                                                                            data-target="#servModal{{ service["service_id"] }}"
+                                                                            class="btn btn-dark btn-sm"><i
+                                                                                class="fas fa-bars"></i></button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal fade"
+                                                                 id="servModal{{ service["service_id"] }}">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title">{{ service["service_name"] }}</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            {{ service["service_description"] }}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                    data-dismiss="modal">Kapat
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var rows = $('table tr').each(function () {
+        var row = $(this);
+        var columns = row.children('td');
+
+        row.data('name-chars', [
+            columns.eq(0).html()[0].toUpperCase(),
+            columns.eq(1).html()[0].toUpperCase(),
+        ]);
+    });
+
+    $('select').change(function () {
+        var char = $(this).val().toUpperCase();
+
+        rows.each(function () {
+            var row = $(this);
+            var chars_to_match = row.data('name-chars');
+            if ($.inArray(char, chars_to_match) > -1) {
+                row.show();
+            } else {
+                row.hide();
+            }
+        });
+    });
+</script>
+<script>
+    window.secilikategori = "";
+    function filtrele() {
+        var input, chars,input_new, filter, ul, li, e, i, txtValue;
+        chars = {'İ': 'I', 'Ü': 'U', 'ü': 'u', 'Ç': 'C', 'ç': 'c', 'Ö': 'O', 'ö': 'o', 'Ğ': 'G', 'ğ': 'g'};
+        input = document.getElementById('serv-inp');
+        filter = input.value.toUpperCase();
+
+        ul = document.getElementsByClassName("table-service-item");
+        for (e = 0; e < ul.length; e++) {
+            li = ul[e].getElementsByClassName('table-service-name');
+            var b = $("div[data-kategori*=" + input_new + "]");
+            for (i = 0; i < li.length; i++) {
+                if(window.secilikategori == "" || window.secilikategori == ul[e].getAttribute('data-kategori')){
+                txtValue = li[i].textContent || li[i].innerText;
+                txtValue = txtValue.replaceAll(/[İÜüÇçÖöĞğ]/g, m => chars[m]);
+                filter = filter.replaceAll(/[İÜüÇçÖöĞğ]/g, m => chars[m]);
+
+
+
+                if (txtValue.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+                    ul[e].style.display = "";
+                } else {
+                    ul[e].style.display = "none";
+                }
+                }
+            }
+        }
+    }
+
+</script>
+<script>
+    function filtereKategori() {
+        var input, input_new, ul, a, e, kat, i;
+        input = document.getElementById('kategori_filtre').value;
+        input_new = input.replaceAll(' ', '-');
+
+        if (input != 'All') {
+            window.secilikategori = input_new;
+            var g = $("div[id*='servisDetay']:visible").hide();
+            ul = document.getElementsByClassName("table-service-title");
+            for (e = 0; e < ul.length; e++) {
+                a = ul[e].getElementsByTagName("span")[0].innerText;
+
+
+                if (a.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+
+                    var b = $("div[data-kategori*=" + input_new + "]").show();
+                    ul[e].style.display = "";
+                } else {
+                    ul[e].style.display = "none";
+                }
+            }
+            filtrele();
+        } else {
+            window.secilikategori = "";
+            ul = document.getElementsByClassName("table-service-title");
+            var g = $("div[id*='servisDetay']").show();
+            for (e = 0; e < ul.length; e++) {
+
+                ul[e].style.display = "";
+
+            }
+            filtrele();
+        }
+    }
+</script>
+{% include 'main/bootstrap/footer.twig' %}

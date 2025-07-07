@@ -1,0 +1,420 @@
+{% include 'main/bootstrap/header.twig' %}
+    
+         <div class="app-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+                    <div class="top-notice d-flex align-items-center">
+                        <i class="ri-vip-crown-line"></i>
+                        <span class="pl-3"><p>Hoşgeldin, {{ user['username'] }}</p><h5>Yeni bir sipariş vermek için, aşağıdaki Sipariş Formundan siparişinizi oluşturabilirsiniz.</h5>
+                    </div>
+                     <section class="order-side">
+                        <div class="row">
+                            <div class="col-lg-8 col-12 mb-5 mb-lg-0">
+                              <div class="d-card dc-dblue">
+                                 <div class="d-card-body" id="dc-body">
+
+                                    <div class="fiber-head th-3">
+                                        <div style="align-items:center;display:flex!important;">
+                                            <div class="col-md-1">
+                                                <div class="fiber-icon">
+                                                    <i class="fal fa-hand-holding-box"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md col-12 ml-3">
+                                                <h2>Yeni sipariş</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   <form method="post" action="/">
+                                    {% if error %}
+                                      <div class="alert alert-dismissible alert-danger">
+                                        {{ errorText }}
+                                      </div>
+                                    {% endif %}
+
+                                    {% if data["order"]["success"] == 1 %}
+                                      <div class="alert alert-dismissible alert-success">
+                                          <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+                                          <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+                                          <strong> {{ lang["neworder.success.link"] }}: </strong> {{ data['order']['link'] }} <br>
+                                          <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['quantity'] }} <br>
+                                          <strong> {{ lang["neworder.success.charge"] }}: </strong> {{ data['order']['price'] }} <br>
+                                          <strong> {{ lang["neworder.success.balance"] }}: </strong>{{ data['order']['balance'] }} <br>
+                                      </div>
+                                    {% endif %}
+                                    {% if data["order"]["success"] == 2 %}
+                                      <div class="alert alert-dismissible alert-success">
+                                         <strong> {{ lang["neworder.success.id"] }}: </strong> {{ data['order']['id'] }} <br>
+                                         <strong> {{ lang["neworder.success.service"] }}: </strong> {{ data['order']['service'] }} <br>
+                                         <strong> {{ lang["neworder.success.username"] }}: </strong> {{ data['order']['link'] }} <br>
+                                         <strong> {{ lang["neworder.success.quantity"] }}: </strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
+                                         <strong> {{ lang["neworder.success.posts"] }}: </strong> {{ data['order']['posts'] }} <br>
+                                         <strong> {{ lang["neworder.success.delay"] }}: </strong>{{ data['order']['delay'] }} <br>
+                                       </div>
+                                    {% endif %} 
+                                      {% if categories %}
+                                        <div class="form-group">
+                                            <label for="orderform-category" class="control-label">{{ lang["neworder.category"] }}</label>
+
+                                            <select class="form-control" id="neworder_category" name="categories">
+                                              {% for category in categories %}
+                                              <option {% if category['category_id'] == data["categories"] %} selected {% endif %} value="{{ category['category_id'] }}" ><i class="{{ category["icon"] }}"></i>{{ category["category_name"] }}</option>
+                                              {% endfor %}
+                                            </select>
+                                        </div>
+                                      {% endif %}
+                                       
+                                       <div class="form-group mb-4">
+                                          <label id="orderform-service" for="orderform-service" class="control-label" data-label="{{ lang["neworder.service"] }}">{{ lang["neworder.service"] }}</label>
+                                          <select class="form-control" id="neworder_services" name="services"> </select>
+                                       </div>
+                                       
+                                       <div id="neworder_fields"></div>
+                                       
+                                       <div class="form-group mb-4" id="charge_div">
+                                          <label>
+                                          Tutar
+                                          </label>
+                                          <div class="input-group">
+                                             <div class="input-group-prepend">
+                                                <div class="input-group-text text-center">
+                                                   <i class="ri-currency-line"></i>
+                                                </div>
+                                             </div>
+                                             <input class="form-control" type="text" id="charge" value="" placeholder="0.00₺" readonly="">
+                                          </div>
+                                       </div>
+                                       
+                                        {% if neworderTerms %}
+                                          <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" name="neworder_check">{{ lang['neworder.recheck'] }}
+                                            </label>
+                                          </div>
+                                        {% endif %}
+                                      
+                                      
+                                       <button type="submit" class="btn btn-primary btn-lg btn-block mb-4">Sipariş Ver</button>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-4 col-12 mb-5 mb-lg-0">
+                                <div class="balance-box">
+                                    <div class="bbox-area row">
+                                      <div class="bbox-area-left">
+                                        <img class="bbox-img" src="https://populeriz.com/images/user-shield.png">
+                                      </div>
+                                      <div class="bbox-content">
+                                        <h4 class="bbox-area-heading"><small>Bakiye:</small> {{ user['balance'] }}</h4>
+                                        <h5><small>Üyelik Statüsü:</small> <span id="accStats" class="main-color">Bronz</span></h5>
+                                          <p id="spentBalance" style="display:none">{{ user['spent'] }}</p>
+                                          <script>
+                                            const cBalance = document.getElementById("spentBalance").innerText;
+                                            var text;
+                                            if (500 < cBalance && cBalance < 999) { text = "Gümüş"; }    
+                                            else if (1000 < cBalance && cBalance < 99999) { text = "Altın"; }    
+                                            else {
+                                              text = "Bronz";
+                                            }
+                                            document.getElementById("accStats").innerText = text;
+                                          </script> 
+                                      </div>
+                                    </div>
+                                    <a href="/addfunds" class="btn btn-primary btn-xs">Bakiye Yükle</a>
+                                </div>
+                           
+                              <div class="d-card dc-green mb-3">
+                                 <div class="d-card-body" id="dc2-body" style="overflow-y: auto;"> 
+                                    <div class="dash-title d-flex align-items-center justify-content-center mb-4">
+                                        <i class="ri-customer-service-2-fill mr-3"></i>
+                                        <span>Destek Merkezi</span>
+                                    </div>
+                                    <p class="dash-p">Soru / Sorunlarınızı yanıtlamaktan memnuniyet duyarız. Hemen destek talebi oluşturabilirsiniz.</p>
+                                    <div class="dash-text">
+                                        <a href="/tickets"><button type="submit" class="btn btn-outline btn-block">Destek Talebi Oluştur</button></a>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+                                      <div class="d-card-head">
+                                            <ul class="nav nav-tabs" style="display:flex;margin-top: 0px;margin-bottom: 0;border-left: 0px solid #eff0ff;padding-left: 0px;">
+                                            <li class="active" style="padding: 0px;margin-bottom: 0px;"><a style="color:#fff;padding: 0.5rem;" data-toggle="tab" href="#home">Duyurular</a></li>
+                                            <li style="padding: 0px;margin-bottom: 0px;"><a style="color:#fff;padding: 0.5rem;" data-toggle="tab" href="#menu1">Güncellemeler</a></li>
+                                            <li style="padding: 0px;margin-bottom: 0px;"><a style="color:#fff;padding: 0.5rem;" data-toggle="tab" href="#menu2">Bakiye Kazan</a></li>
+                                          </ul>
+                                      </div>
+                                      
+                                      
+                                      <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active show"style="overflow-y: auto;">
+                                            
+                                            <div class="glycon-updates-container" data-glycon="updates-container" style="height:500px">
+                                                                            {% for new in newsList %}
+                                                                            <div class="glycon-updates-pages-container">
+                                                                                <div data-glycon="updates-page" data-page="1" class="glycon-updates-page">
+                                                                                    <div class="glycon-updates-item card p-4 mb-4" data-glycon="updates-item" data-type="add">
+                                                                                        <div class="align-items-center">
+                                                                                            <div class="col-md col-12">
+                                                                                                <h4 class="mb-0"><img style="height: 1rem;" src="assets/img/icons/{{ new['news_icon'] }}.png"> - {{ new['news_title'] }}</h4>
+                                                                                            </div>
+                                                                                            <div class="col-md-auto col-6" style="text-align: center;">
+                                                                                                <span data-glycon="timezone_replace" data-time-type="xtimeago" class="time_replaced"><small>{{ new['news_date'] }}</small></span>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-md-auto"style="text-align:center;">
+                                                                                                {{ new['news_content'] }}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endfor %}
+                                                                        </div>
+                                        </div>
+                                        <div id="menu1" class="tab-pane fade"style="overflow-y: auto;">
+                                          <div class="glycon-updates-container" data-glycon="updates-container" style="height:500px">
+                                                                            {% for updates in updateList %}
+                                                                            <div class="glycon-updates-pages-container">
+                                                                                <div data-glycon="updates-page" data-page="1" class="glycon-updates-page">
+                                                                                    <div class="glycon-updates-item card p-4 mb-4" data-glycon="updates-item" data-type="add">
+                                                                                        <div class="align-items-center">
+                                                                                            <div class="col-md col-12">
+                                                                                                <h4 class="mb-0">{{updates.service_id}} - {{updates.alert}}</h4>
+                                                                                            </div>
+                                                                                            <div class="col-md-auto col-6" style="text-align: center;">
+                                                                                                <span data-glycon="timezone_replace" data-time-type="xtimeago" class="time_replaced"><small>{{updates.created_at}}</small></span>
+                                                                                            </div>
+                                                                                            <div class="col-12 col-md-auto">
+                                                                                                {% if updates.extra.action == "down"%}
+                                                                                                <div class="glycon-update-action p-downd">
+                                                                                                    <span>Fiyat Düştü </span>
+                                                                                                    <span>{{updates.extra.old}}₺ > {{updates.extra.new}}₺</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "up"%}
+                                                                                                <div class="glycon-update-action p-downd">
+                                                                                                    <span>Fiyat Yükseldi </span>
+                                                                                                    <span>{{updates.extra.old}}₺ > {{updates.extra.new}}₺</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "max_up"%}
+                                                                                                <div class="glycon-update-action p-max-y">
+                                                                                                    <span>Maksimum Yükseldi </span>
+                                                                                                    <span>{{updates.extra.old}} > {{updates.extra.new}}</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "max_down"%}
+                                                                                                <div class="glycon-update-action p-max">
+                                                                                                    <span>Maksimum Düştü </span>
+                                                                                                    <span>{{updates.extra.old}} > {{updates.extra.new}}</span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "min_down"%}
+                                                                                                <div class="glycon-update-action p-min">
+                                                                                                    <span>Minimum Düştü </span>
+                                                                                                    <span>{{updates.extra.old}} > {{updates.extra.new}}</span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "min_up"%}
+                                                                                                <div class="glycon-update-action p-min-y">
+                                                                                                    <span>Minimum Yükseldi </span>
+                                                                                                    <span>{{updates.extra.old}} > {{updates.extra.new}}</span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "aktif"%}
+                                                                                                <div class="glycon-update-action p-down">
+                                                                                                    <span>Servis Eklendi </span>
+                                                                                                </div>
+                                                                                                {% elseif updates.extra.action == "pasif"%}
+                                                                                                <div class="glycon-update-action p-delete">
+                                                                                                    <span>Servis Silindi </span>
+                                                                                                </div>
+                                                                                                {% endif %}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% endfor %}
+                                                                        </div>
+                                        </div>
+                                        <div id="menu2" class="tab-pane fade"style="overflow-y: auto;">
+                                          <p class="py-3">Bakiye kazanmak için bir blog yazısı ya da haber yazısı yazıp internet sitende paylaşabilir, forumlarda bize destek olabilir, sosyal medya platformlarında bizi paylaşarak bakiye kazanabilirsin.</p>
+                                                                    
+                                                                        <div class="tablepen mt-2">
+                                                                            <div class="sira headers bx-none">
+                                                                               <div class="hucre">
+                                                                                  Platform
+                                                                               </div>
+                                                                               <div class="hucre">
+                                                                                  İşlem
+                                                                               </div>
+                                                                               <div class="hucre">
+                                                                                  Ücret
+                                                                               </div>
+                                                                               <div class="hucre">
+                                                                                  Süre
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="sira">
+                                                                               <div class="hucre" data-title="Platform">
+                                                                                  Forumlar
+                                                                               </div>
+                                                                               <div class="hucre" data-title="İşlem">
+                                                                                  Yorum
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Ücret">
+                                                                                  1₺
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Süre">
+                                                                                  1 Gün
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="sira">
+                                                                               <div class="hucre" data-title="Platform">
+                                                                                  Sosyal Medya
+                                                                               </div>
+                                                                               <div class="hucre" data-title="İşlem">
+                                                                                  Gönderi/Post
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Ücret">
+                                                                                  5₺
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Süre">
+                                                                                  15 Gün
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="sira">
+                                                                               <div class="hucre" data-title="Platform">
+                                                                                  Youtube
+                                                                               </div>
+                                                                               <div class="hucre" data-title="İşlem">
+                                                                                  Video
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Ücret">
+                                                                                  25₺ (.dk)
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Süre">
+                                                                                  15 Gün
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="sira">
+                                                                               <div class="hucre" data-title="Platform">
+                                                                                  Blog Sitesi
+                                                                               </div>
+                                                                               <div class="hucre" data-title="İşlem">
+                                                                                  Makale
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Ücret">
+                                                                                  5₺
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Süre">
+                                                                                  15 Gün
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="sira">
+                                                                               <div class="hucre" data-title="Platform">
+                                                                                  Haber Sitesi
+                                                                               </div>
+                                                                               <div class="hucre" data-title="İşlem">
+                                                                                  Makale
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Ücret">
+                                                                                  7.5₺
+                                                                               </div>
+                                                                               <div class="hucre" data-title="Süre">
+                                                                                  15 Gün
+                                                                               </div>
+                                                                            </div>
+                                                                         </div>
+                                        </div>
+                                      </div>
+                                 </div>
+                              </div>
+
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+         </div>
+    
+
+    </div>
+         
+
+{% include 'main/bootstrap/footer.twig' %}
+<script>
+  function updateDetail(e) {
+    var r = $("#neworder_services").find(":selected").attr("data-array"),
+        n = serviceArray.services[r].type,
+        a = serviceArray.services[r].max,
+        i = serviceArray.services[r].min,
+        t = serviceArray.services[r].link_type,
+        l = serviceArray.services[r].dripfeed;
+    t = 1 == t ? "link_url" : "link_username";
+    updateDescription(e);
+    updateDescription2(e),
+        1 == n
+            ? ($("#order_link > label").text(generalList.label_list[t]),
+              $("#order_link").removeClass("hidden"),
+              $("#order_quantity").removeClass("hidden"),
+              $(".min-max")
+                  .removeClass("hidden")
+                  .text("Min: " + i + " Max:" + a),
+              $("#neworder_quantity").attr("disabled", !1))
+            : 2 == n
+            ? ($("#order_link > label").text(generalList.label_list[t]), $("#order_link").removeClass("hidden"))
+            : 3 == n
+            ? ($("#order_link > label").text(generalList.label_list[t]),
+              $("#order_link").removeClass("hidden"),
+              $("#order_quantity").removeClass("hidden"),
+              $("#order_comment").removeClass("hidden"),
+              $("#neworder_quantity").attr("disabled", !0))
+            : 4 == n
+            ? ($("#order_link > label").text(generalList.label_list[t]), $("#order_link").removeClass("hidden"), $("#order_comment").removeClass("hidden"))
+            : 5 == n
+            ? ($("#order_link > label").text(generalList.label_list[t]),
+              $("#order_link").removeClass("hidden"),
+              $("#order_username").removeClass("hidden"),
+              $("#order_quantity").removeClass("hidden"),
+              $("#neworder_quantity").attr("disabled", !1))
+            : 11 == n || 12 == n
+            ? ($("#order_username").removeClass("hidden"),
+              $("#order_auto").removeClass("hidden"),
+              $("#order_min > .min-max")
+                  .removeClass("hidden")
+                  .text("Min: " + i + " Max:" + a))
+            : (14 != n && 15 != n) || $("#order_username").removeClass("hidden"),
+        l && $("#dripfeed").removeClass("hidden"),
+        $(".datetime")
+            .datepicker({ format: "dd/mm/yyyy", language: "tr", startDate: new Date() })
+            .on("change", function (e) {
+                $(".datetime").datepicker("hide");
+            }),
+        $("#clearExpiry").click(function () {
+            $("#expiryDate").val("");
+        }),
+        getSession("link") && $("#field-orderform-fields-link").val(getSession("link")),
+        getSession("quantity") && $("#neworder_quantity").val(getSession("quantity")),
+        getSession("username") && $('[name="username"]').val(getSession("username")),
+        getSession("posts") && $("#field-orderform-fields-posts").val(getSession("posts")),
+        getSession("expiry") && $("#expiryDate").val(getSession("expiry")),
+        getSession("min") && $('[name="min"]').val(getSession("min")),
+        getSession("max") && $('[name="max"]').val(getSession("max")),
+        getSession("delay") && $('[name="delay"]').val(getSession("delay")),
+        getSession("comments") && $("#neworder_comment").val(getSession("comments").replace(new RegExp("<br>", "g"), "\r\n")),
+        updateRate(e);
+}
+</script>
+
+
+<script>
+  $( "form" ).submit(function() {
+  	$('button[type="submit"]').attr('disabled',true);
+  	setTimeout(function(){ $('button[type="submit"]').attr('disabled',false); }, 2000);
+  });
+</script>

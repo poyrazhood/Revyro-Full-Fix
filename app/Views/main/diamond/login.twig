@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<html lang="{{ lang['code'] }}">
+{% endif %}
+{% endfor %}
+<head>
+  <base href="{{ site['url'] }}/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <meta name="keywords" content="{{ keywords }}">
+  <meta name="description" content="{{ description }}">
+  {% if site['favicon'] %}
+    <link rel="shortcut icon" type="image/ico" href="{{ site['favicon'] }}" />
+  {% endif %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  
+
+    <link rel="stylesheet" href="assets/css/minified.css">
+
+      <link rel="stylesheet" type="text/css" href="https://cdn.mypanel.link/css/font-awesome/css/all.min.css">
+
+    {{ headerCode }}
+
+</head>
+
+<body>
+    <!--============= ScrollToTop Section Starts Here =============-->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
+    <div class="overlay"></div>
+    <!--============= ScrollToTop Section Ends Here =============-->
+
+
+    <!--============= Header Section Starts Here =============-->
+    <header class="header-section header-cl-black">
+        <div class="container">
+            <div class="header-wrapper">
+                           <div class="logo">
+                    <a href="/">
+  {% if site["logo"] %}
+                                      <img src="{{ site['logo'] }}" alt="{{ site["site_name"] }}" title="{{ site["site_name"] }}">
+                                    {% else %}
+                                      {{ site["site_name"] }}
+                                    {% endif %}                       </a>
+                </div>
+                <ul class="menu">
+         <li {% if active_menu == "auth" %} class="active" {% endif %}>
+          <a href="/">{{ lang['signin.title'] }}</a>
+        </li> 
+        {% if servicesPage %}
+        <li {% if active_menu == "services" %} class="active" {% endif %}>
+          <a href="/services">{{ lang['services.title'] }}</a>
+        </li>
+        {% endif %}
+        {% if blogPage %}
+        <li {% if active_menu == "blog" %} class="active" {% endif %}>
+          <a href="/blog">{{ lang['blog.title'] }}</a>
+        </li>
+        {% endif %}
+        {% if faqPage %}
+        <li {% if active_menu == "faq" %} class="active" {% endif %}>
+          <a href="/faq">{{ lang['faq.title'] }}</a>
+        </li>
+        {% endif %}
+        {% if termsPage %}
+        <li {% if active_menu == "terms" %} class="active" {% endif %}>
+          <a href="/terms">{{ lang['terms.title'] }}</a>
+        </li>
+        {% endif %}
+        {% if apiPage %}
+        <li {% if active_menu == "api" %} class="active" {% endif %}>
+          <a href="/api">{{ lang['api.title'] }}</a>
+        </li>
+        {% endif %}
+        {% for menus in menuall %}
+        <li>
+            <a href="{{ menus.link }}">{{ menus.name }}</a>
+        </li>
+        {% endfor %}
+ 
+                            
+                </ul>
+                <div class="header-bar d-lg-none">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="header-right">
+                              {% for lang in site['languages'] %}
+              {% if lang['active'] %}
+                    <select class="select-bar">
+                   
+                        {% for lang in site['languages'] %}
+                <option {% if lang['active'] %} selected {% endif %}><a href="?lang={{ lang['code'] }}">{{ lang['name'] }}</a></li>
+              {% endfor %}
+                    </select>
+                        {% endif %}
+            {% endfor %}
+               
+             
+                     
+                    {% if registerPage %}
+                        <a href="/signup" class="header-button d-none d-sm-inline-block light">{{ lang['signup.title'] }}</a>
+                    {% endif %}
+                    </div>
+            </div>
+        </div>
+    </header>
+    <!--============= Header Section Ends Here =============-->
+
+
+    <!--============= Banner Section Starts Here =============-->
+    <section class="banner-7 bg_img oh bottom_right" data-background="./assets/images/banner/banner-bg-7.jpg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner-content-7">
+                        <h1 class="title">Sosyal Medyada Fenomen Olun</h1>
+                        <p>
+                            Bütün işlemlerinizi otomatik ve güvenilir bir şekilde yapın.
+                        </p>    {% if errorText %}
+        <div class="alert alert-dismissible alert-danger">
+          {{ errorText }}
+        </div>
+      {% endif %}
+      {% if successText %}
+        <div class="alert alert-dismissible alert-success">
+          {{ successText }}
+        </div>
+      {% endif %}
+                        <div class="banner-button-group">
+                            <a href="/"   class="button-4" data-toggle="modal" data-target="#exampleModal">Giriş Yap</a>
+                            {% if registerPage %}
+                            <a href="signup" class="button-4 active">Kayıt Ol</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-lg-block d-none">
+                    <img src="./assets/img/slider.png" alt="banner">
+                </div>
+                <div class="col-12">
+                    <div class="counter-wrapper-3">
+                        <div class="counter-item">
+                            <div class="counter-thumb">
+                                <img src="./assets/images/icon/counter1.png" alt="icon">
+                            </div>
+                            <div class="counter-content">
+                                <h2 class="title"><span class="counter">+1000</span></h2>
+                                <span class="name">Kullanıcı</span>
+                            </div>
+                        </div>
+                        <div class="counter-item">
+                            <div class="counter-thumb">
+                                <img src="./assets/images/icon/counter2.png" alt="icon">
+                            </div>
+                            <div class="counter-content">
+                                <h2 class="title"><span class="counter">{{ ordersCount }}</span></h2>
+                                <span class="name">Toplam Sipariş</span>
+                            </div>
+                        </div>
+                        <div class="counter-item">
+                            <div class="counter-thumb">
+                                <img src="./assets/images/icon/counter5.png" alt="icon">
+                            </div>
+                            <div class="counter-content">
+                                <h2 class="title"><span class="counter">95</span><span>%</span></h2>
+                                <span class="name">Müşteri Memnuniyeti</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ lang['signin.title'] }}</h5>
+
+      </div>
+      <div class="modal-body">
+        
+      <form  method="post" action="">
+
+          <div class="form-group">
+            <label for="username" class="control-label">{{ lang['signin.username'] }}</label>
+            <input type="text" class="form-control" name="username">
+          </div>
+          <div class="form-group  form-group__password">
+            <label for="password" class="control-label">{{ lang['signin.password'] }}</label>
+            <input type="password" class="form-control" name="password">
+            {% if resetPage %}
+             <a href="resetpassword" class="forgot-password"> {{ lang['signin.password.lost'] }}</a>
+            {% endif %}
+          </div>
+            <div class="form-group d-flex">
+										             <input style="height:20px; width: 3%;" type="checkbox" name="remember" value="1" id="remember">
+										             <label class="form-check-label" for="remember">{{ lang['signin.remember'] }}</label>
+										          </div>
+            {% if settings['recaptcha'] == 2 %}
+          {% if captcha %}
+            <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+            </div>
+          {% endif %}
+          {% endif %} </div>
+   
+   <div class="modal-footer">
+          <button type="submit" class="btn btn-primary click">{{ lang['signin.button'] }}</button>
+          </form>        
+        
+     
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+    <!--============= Banner Section Ends Here =============-->
+
+
+    <!--============= To Access Section Starts Here =============-->
+    <section class="to-access-section padding-top padding-bottom bg_img mb-lg-5" data-background="./assets/images/feature/to-access-bg.png" id="feature">
+        <div class="container">
+            <div class="section-header">
+                <h5 class="cate"><a href="/">{{ site["site_name"] }}</a></h5>
+                <h2 class="title">En Hızlı SMM Panel</h2>
+                <p>Türkiye'nin en hızlı SMM Paneli ile hemen tanışın. Kalitenin keyfini çıkartın.</p>
+            </div>
+            <div class="row mb-30 justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="to-access-item">
+                        <div class="to-access-thumb">
+                            <span class="anime"></span>
+                            <div class="thumb">
+                                <img src="./assets/images/icon/access1.png" alt="access">
+                            </div>
+                        </div>
+                        <h5 class="title">Hızlı Servisler</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="to-access-item">
+                        <div class="to-access-thumb">
+                            <span class="anime"></span>
+                            <div class="thumb">
+                                <img src="./assets/images/icon/access2.png" alt="access">
+                            </div>
+                        </div>
+                        <h5 class="title">Güncel</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="to-access-item">
+                        <div class="to-access-thumb">
+                            <span class="anime"></span>
+                            <div class="thumb">
+                                <img src="./assets/images/icon/access3.png" alt="access">
+                            </div>
+                        </div>
+                        <h5 class="title">Güvenilir</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="to-access-item">
+                        <div class="to-access-thumb">
+                            <span class="anime"></span>
+                            <div class="thumb">
+                                <img src="./assets/images/icon/access4.png" alt="access">
+                            </div>
+                        </div>
+                        <h5 class="title">7/24 Destek</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= To Access Section Ends Here =============-->
+
+
+    <!--============= How It Works Section Starts Here =============-->
+    <section class="work-section padding-bottom bg_img mb-md-95 pb-md-0" data-background="./assets/images/work/work-bg.jpg" id="how">
+        <div class="oh padding-top pos-rel">
+            <div class="top-shape d-none d-lg-block">
+                <img src="./assets/css/img/work-shape.png" alt="css">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-xl-7">
+                        <div class="section-header left-style cl-white">
+                            <h5 class="cate"><a href="/">{{ site["site_name"] }}</a></h5>
+                            <h3>Peki Nasıl Çalışır?</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-slider owl-carousel owl-theme" data-slider-id="2">
+                    <div class="work-item">
+                        <div class="work-content cl-white">
+                            <h3 class="title">?Kayıt Nasıl Olunur</h3>
+                            <p>Sitemize üyelikler tamamen ücretsizdir ve her zaman ücretsiz kalacaktır
+<br>
+Kayıt ol butonuna tıklayıp karşınıza çıkan kayıt formunu eksiksiz doldurmanız durumunda kaydınız başarılı bir şekilde gerçekleşir</p>
+                        {% if registerPage %}
+                            <a href="signup" class="get-button white light"><i class="fa fa-pencil-square-o"></i> Kayıt Olmak İçin Tıklayınız</a>
+                        {% endif %}    
+                        </div>
+                    </div>
+                    <div class="work-item">
+               
+                        <div class="work-content cl-white">
+                            <h3 class="title">?Bakiye Nasıl Yüklenir</h3>
+                            <p>3D Secure ile online ödeme yapabilir Dilerseniz anlaşmalı bankalar üzerinden Havale ve EFT yapabilirsiniz
+<br>
+Bakiye yükle butonuna tıklayıp karşınıza çıkan ödeme yöntemlerinden dilediğinizi seçerek bakiyenizi yükleyebilirsiniz Online ödemeler anında yüklenir fakat Havale ve EFT ödemeleriniz için Ödeme Bildirimi oluşturmalısınız</p>
+                      </div>
+                    </div>
+                    <div class="work-item">
+
+                        <div class="work-content cl-white">
+                            <h3 class="title">?Sipariş Nasıl Verilir</h3>
+                            <p>İstediğiniz servisi seçip formu doldurduktan sonra kolaylıkla sipariş verebilirsiniz
+<br>
+İstediğiniz kategoriyi ve servisi seçerek ilgili servisin açıklamasındaki örnek linki baz alarak sipariş vermek istediğiniz linki yazarak ve miktarını girerek siparişinizi verebilirsiniz</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <div class="work-thumb">
+                            <img src="assets/platinum/img/dasboard-screen-4.png" alt="work">
+                        </div>
+                        <div class="work-content cl-white">
+                            <h3 class="title">!Fenomen Olun</h3>
+                            <p>Sosyal Medya da fenomen olmaya başlayın
+<br>
+Satın almış olduğunuz etkileşimlerin hızlı bir şekilde teslim edilmesinin ardından sosyal medyada fenomen olabilir geniş kitlelere adınızı duyurabilirsiniz</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="count-slider owl-thumbs" data-slider-id="2">
+                <div class="count-item">
+                    <span class="serial">01</span>
+                    <h5 class="title">Kayıt Ol</h5>
+                </div>
+                <div class="count-item">
+                    <span class="serial">02</span>
+                    <h5 class="title">Bakiye Yükle</h5>
+                </div>
+                <div class="count-item">
+                    <span class="serial">03</span>
+                    <h5 class="title">Sipariş Ver</h5>
+                </div>
+                <div class="count-item">
+                    <span class="serial">04</span>
+                    <h5 class="title">Fenomen Ol!</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= How It Works Section Ends Here =============-->
+
+
+
+
+
+
+    <!--============= Advance Feature Section Starts Here =============-->
+    <section class="advance-feature-section padding-top-2 padding-bottom-2">
+        <div class="container">
+          <div class="advance-feature-item padding-top-2 padding-bottom-2">
+                <div class="advance-feature-thumb">
+                    <img src="./assets/images/access/access1.png" alt="feature">
+                </div>
+          <div class="advance-feature-content">
+                    <div class="section-header left-style mb-olpo">
+                      <h5 class="cate">Herşey Bir Arada</h5>
+                            <h2 class="title">Kullanım Kolaylığı</h2>
+                            <p>Servis detayları servislerin altında yer almaktadır. Sadece kullanıcı id veya link girerek kolay alışveriş yapabilirsiniz. Sosyal Medya Paneli destek ekibimiz ve kullanım kolaylığıyla sizlere kolay kullanım sunuyoruz.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="advance-feature-item padding-top-2 padding-bottom-2">
+                <div class="advance-feature-thumb">
+                    <img src="./assets/images/feature/advance1.png" alt="feature">
+                </div>
+                <div class="advance-feature-content">
+                    <div class="section-header left-style mb-olpo">
+                      <h5 class="cate">Güvenli Ödeme</h5>
+                            <h2 class="title">Ödeme Seçenekleri</h2>
+                            <p>{{ site["site_name"] }} Ödeme seçeneklerinde kredi kartı , banka kartı , eft gibi bir çok seçenek bulunmaktadır. Hesabınıza Maximum 10 dk içinde paranız yatmaktadır. Online ve güvenli ödeme mevcuttur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="advance-feature-item padding-top-2 padding-bottom-2">
+                <div class="advance-feature-thumb">
+                    <img src="./assets/images/feature/advance2.png" alt="feature">
+                </div>
+                <div class="advance-feature-content">
+                    <div class="section-header left-style mb-olpo">
+                      <h5 class="cate">Sosyal Medya</h5>
+                            <h2 class="title">Ucuz Servisler</h2>
+                            <p>Genellikle ucuz sosyal medya servisleri bulunmaktadır. Kalite servisler bir iki tık daha pahalıdır. Aralarındaki farklar ise hız ve özenli iş farkı vardır. Ucuz Servisler diğerlerine göre daha yavaştır.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="advance-feature-item padding-top-2 padding-bottom-2">
+                <div class="advance-feature-thumb">
+                    <img src="./assets/images/feature/advance3.png" alt="feature">
+                </div>
+                <div class="advance-feature-content">
+                    <div class="section-header left-style mb-olpo">
+                        <h5 class="cate">7/24 Tam Destek</h5>
+                        <h2 class="title">Güler Yüzlü Müşteri Desteği</h2>
+                        <p>Müşterilerimizin her türlü sorunlarıyla birebir olarak ilgilenip tüm sıkıntılarını çözmelerinde yardımcı oluyoruz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= Advance Feature Section Ends Here =============-->
+
+
+
+    <!--============= Testimonial Section Starts Here =============-->
+    <section class="testimonial-section padding-top pt-lg-half" id="client">
+        <div class="container">
+            <div class="section-header">
+                <h5 class="cate">Müşteri Yorumları</h5>
+                <h2 class="title">5000+ Mutlu Müşterinin Yorumları</h2>
+            </div>
+            <div class="testimonial-wrapper">
+                <a href="#0" class="testi-next trigger">
+                    <img src="./assets/images/client/left.png" alt="client">
+                </a>
+                <a href="#0" class="testi-prev trigger">
+                    <img src="./assets/images/client/right.png" alt="client">
+                </a>
+                <div class="testimonial-area testimonial-slider owl-carousel owl-theme">
+                    <div class="testimonial-item">
+                        <div class="testimonial-thumb">
+                            <div class="thumb">
+                                <img src="./assets/images/client/client1.jpg" alt="client">
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="ratings">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                            </div>
+                            <p>
+                                {{ site["site_name"] }} ile çalışmaya başladığımdan beri hizmetlerinden son derece memnunum
+                            </p>
+                            <h5 class="title">Hanife Şen</h5>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-thumb">
+                            <div class="thumb">
+                                <img src="./assets/images/client/client1.jpg" alt="client">
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="ratings">
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span>
+                            </div>
+                            <p>
+                                Güvenilir, kaliteli ve hızlı servisler ile her zaman müşteri memnuniyeti odaklı çalıştıkları için teşekkürler {{ site["site_name"] }}
+                            </p>
+                            <h5 class="title">Cemal Kaşık</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= Testimonial Section Ends Here =============-->
+
+
+    <!--============= Faq Section Starts Here =============-->
+    <section class="faq-section padding-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="faq-header">
+                        <div class="cate">
+                            <img src="./assets/images/cate.png" alt="cate">
+                        </div>
+                        <h2 class="title">Sık Sorulan Sorular</h2>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="faq-wrapper mb--38">
+                        <div class="faq-item">
+                            <div class="faq-thumb">
+                                <i class="fa fa-question"></i>
+                            </div>
+                            <div class="faq-content">
+                                <h4 class="title">ÖDEMEYİ NASIL YAPABİLİRİM ?</h4>
+                                <p>
+                                    Havale ve EFT , Mobil veya Kredi Kartı üzerinden ödeme yapabilirsiniz.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-thumb">
+                                <i class="fa fa-question"></i>
+                            </div>
+                            <div class="faq-content">
+                                <h4 class="title">SMM PANELİM MEVCUT , SİZE NASIL SERVİSLERİ BAĞLAYABİLİRİM ?</h4>
+                                <p>SMM Paneliniz mevcut ise , üye girişi yaptıktan sonra sağ üstteki ayarlar kısmından api key mevcuttur. Api keyi kendi panelinize girerek sistemden servisleri otomatik olarak kendi sisteminize bağlayabilir , satış yapabilirsiniz.Detaylı bilgi için site içi destek kısmından ulaşabilirsiniz.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-thumb">
+                                <i class="fa fa-question"></i>
+                            </div>
+                            <div class="faq-content">
+                                <h4 class="title">ŞİFRE VERMEM GEREKİYOR MU ?</h4>
+                                <p>Sistem içerisinde olan tüm servislerde şifreniz gerekmemektedir. Şifrenizi istemiyoruz. </p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-thumb">
+                                <i class="fa fa-question"></i>
+                            </div>
+                            <div class="faq-content">
+                                <h4 class="title">BENİM PROFİLİMDEN PAYLAŞIM YAPILACAK MI ? BAŞKASINI BEĞENİR MİYİM ? </h4>
+                                <p>Kesinlikle başkasını beğenmez veya takip etmezsiniz. Diğer uygulamalar gibi herhangir bir uygulamaya giriş izinli sistem değildir. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============= Faq Section Ends Here =============-->
+
+
+    <!--============= Trial Section Starts Here =============-->
+    <section class="trial-section padding-bottom padding-top">
+        <div class="container">
+            <div class="trial-wrapper padding-top padding-bottom pr">
+                <div class="ball-1">
+                    <img src="./assets/images/balls/balls.png" alt="balls">
+                </div>
+                <div class="trial-content cl-white">
+                    <h3 class="title">Fenomen Olmaya Hazır Mısın?</h3>
+                    <p>
+                        O Halde Ne Duruyorsun?<br>Hemen Kayıt Ol ve Fenomenlik Yolunda İlk Adımı At.
+                    </p>
+                </div>
+                {% if registerPage %}
+                <div class="trial-button">
+                    <a href="signup" class="transparent-button">Kayıt Ol <i class="fa fa-pencil-square-o"></i></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <!--============= Trial Section Ends Here =============-->
+
+
+    <!--============= Footer Section Starts Here =============-->
+    <footer class="footer-section bg_img" data-background="./assets/images/footer/footer-bg.jpg">
+        <div class="container">
+            <div class="footer-top padding-top padding-bottom">
+                <div class="logo">
+                    <a href="/">
+  {% if site["logo"] %}
+                                      <img src="{{ site['logo'] }}" alt="{{ site["site_name"] }}" title="{{ site["site_name"] }}">
+                                    {% else %}
+                                      {{ site["site_name"] }}
+                                    {% endif %}                       </a>
+                </div>
+                <ul class="social-icons">
+                    <li>
+                        <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="#0" class="active"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#0"><i class="fab fa-pinterest-p"></i></a>
+                    </li>
+                    <li>
+                        <a href="#0"><i class="fab fa-google-plus-g"></i></a>
+                    </li>
+                    <li>
+                        <a href="#0"><i class="fab fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <ul class="footer-link">
+                    <li>
+                        <a href="/">{{ lang['signin.title'] }}</a>
+                    </li>
+                    {% if registerPage %}
+                    <li>
+                        <a href="signup">{{ lang['signup.title'] }}</a>
+                    </li>
+                    {% endif %}
+                    {% if blogPage %}
+                    <li>
+                        <a href="blog">{{ lang['blog.title'] }}</a>
+                    </li>
+                    {% endif %}
+                    {% if faqPage %}
+                    <li>
+                        <a href="faq">{{ lang['faq.title'] }}</a>
+                    </li>
+                    {% endif %}
+                    {% if termsPage %}
+                    <li>
+                        <a href="terms">{{ lang['terms.title'] }}</a>
+                    </li>
+                    {% endif %}
+                    {% if apiPage %}
+                    <li>
+                        <a href="api">{{ lang['api.title'] }}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>
+                    <a href="/">{{ site["site_name"] }}</a> © Copyright 2020 Tüm Hakları Saklıdır.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!--============= Footer Section Ends Here =============-->
+<div class="modal fade" id="popupModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="card" style="position: relative;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+            <div class="text-right cross"> <i class="fa fa-times" style="margin-right: .5rem;"></i> </div>
+            <div class="card-body text-center"> <img height="150" src="{{ site['url'] }}/assets/img/modal-icon.png">
+                <h4 id="modal-title">DUYURU!</h4>
+                <p id="modal-content"></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% for lang in site['languages'] %}
+  {% if lang['active'] %}
+    <script src="https://www.google.com/recaptcha/api.js?hl={{ lang['code'] }}"></script>
+  {% endif %}
+{% endfor %}
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <script src="./assets/js/minified.js"></script>
+    <script src="./assets/js/amain.js"></script>
+</body>
+<script>
+    function popupShow(item, index){
+      $('#modal-title').html(item['baslik']);
+      $('#modal-content').html(item['icerik']);
+      $('#popupModal').modal('show');
+  }
+$.post( "/popup", function( data ) {
+  data['field'].forEach(popupShow);
+    
+    
+});
+</script>
+
+</html>

@@ -1,0 +1,150 @@
+{% include 'main/bootstrap/header.twig' %}
+         <div class="app-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-store-2-line"></i>
+						<span class="pl-3"><strong>Bayilik Paneli</strong><br>Kendi işinizin sahibi olma imkanı sunuyoruz.</span>
+					</div>
+                     <section class="order-side">
+                        <div class="row">
+                           <div class="col-lg-7 col-12 mb-5 mb-lg-0">
+
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+									<form action="/child-panels" method="post">
+									  {% if errorText %}
+										<div class="alert alert-dismissible alert-danger">
+										  <button type="button" class="close" data-dismiss="alert">×</button>
+										  {{ errorText }}
+										</div>
+									  {% endif %}
+									  {% if successText %}
+										<div class="alert alert-dismissible alert-success">
+										  <button type="button" class="close" data-dismiss="alert">×</button>
+										  {{ successText }}
+										</div>
+									  {% endif %}
+                                       <div class="form-group mb-4">
+                                          <label>{{ lang["childpanels.panel.domain"] }}</label>
+                                          <div class="input-group">
+                                            <input type="text" class="form-control" id="domain" name="domain" value="">
+                                          </div>
+                                       </div>
+                                       <!-- form-group end -->
+                                       <div class="form-group mb-4">
+                                          <label>{{ lang["childpanels.panel.currency"] }}</label>
+                                          <div class="input-group">
+											<select class="form-control" name="panel_currency" aria-required="true">
+                                                <option value="USD">United States Dollars (USD)</option>
+                                                <option value="TRY">Türk Lirası (TRY)</option>
+                                                <option value="EUR">Euro (EUR)</option>
+                                            </select>
+                                          </div>
+                                       </div>
+                                       <!-- form-group end -->
+                                       <div class="form-group mb-4">
+                                          <label>{{ lang["childpanels.admin.username"] }}</label>
+                                          <div class="input-group">
+                                             <input type="text" class="form-control" value="admin" disabled>
+                                          </div>
+                                       </div>
+                                       <!-- form-group end -->
+                                       <div class="form-group mb-4">
+                                          <label>{{ lang["childpanels.admin.password"] }}</label>
+                                          <div class="input-group">
+                                             <input class="form-control" value="admin@123" disabled>
+                                          </div>
+                                       </div>
+                                       <!-- form-group end -->
+                                       <div class="form-group mb-4">
+                                          <label>{{ lang["childpanels.panel.amount"] }}</label>
+                                          <div class="input-group">
+                                             <input type="text" class="form-control" value="{{ settings['panel_price'] }}{{ site['currency'] }}" disabled>
+                                          </div>
+                                       </div>
+									   <!-- form-group end -->
+                                       <button type="submit" class="btn btn-primary btn-lg btn-block mb-4 mt-4">{{ lang["neworder.button"] }}</button>
+                                    </form>
+			
+                                 </div>
+                              </div>
+							  
+							  
+							{% if ticketList %}
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+											<table class="table">
+												<thead>
+												<tr>
+													<th>{{ lang["childpanels.domain"] }}</th>
+													<th>{{ lang["childpanels.currency"] }}</th>
+													<th>{{ lang["childpanels.price"] }}</th>
+													<th>{{ lang["childpanels.created"] }}</th>
+												</tr>
+												</thead>
+												<tbody>
+									  {% for panel in ticketList %}
+										<tr>
+										  <td>{{ panel['panel_domain'] }}</td>
+										  <td>{{ panel['panel_currency'] }}</td>
+										  <td>{{ panel['panel_price'] }}</td>
+										  <td><span class="nowrap">{{ panel['panel_created'] }}</span></td>
+										</tr>
+									  {% endfor %}
+												</tbody>
+											</table>
+										</div>
+									</div>
+							{% endif %} 
+													  
+							  
+                           </div>
+						   
+                           <div class="col-lg-5 col-12 mb-5 mb-lg-0">
+						
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+									  <div class="d-card-head">
+											Bayilik Bilgileri
+									  </div>
+									  
+									 <p class="mt-2">Kendi panelinizi kurarak müşterilerinize servislerinizi satabilir. Bu satışın üzerinden gelir elde edebilirsin. Sende uygun maliyetler ile kendi işini kurmak istiyorsan, bu fırsatı kaçırma ve hemen yandaki formu doldur !</p>
+
+									 <p>Sana ait olan sitede asla başka bir siteye ait isim geçmez, tamamen kendi markana ait bir panelin olur.</p>
+									 <div class="d-card dc-dns mb-4">
+										<div class="d-card-body">
+										   <div class="row">
+											  <div class="col-auto mt-4 mt-md-0 align-self-center">
+												 <img src="https://populeriz.com/images/dns.png" style="max-width:75px" alt="">
+											  </div>
+											  <div class="col align-self-center">
+												Lütfen NameServer'larınızı aşağıdaki gibi ayarlayın:
+												<div style="font-size: 19px" class="mt-2">
+													<p class="mb-0"><strong>ns1.glycon.net</strong></p>
+													<p class="mb-0"><strong>ns1.glycon.net</strong></p>
+												</div>
+											  </div>
+										   </div>
+										</div>
+									 </div>
+									
+                                 </div>
+                              </div>
+							  
+                           </div>
+						   
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+	
+         </div>
+
+      </div>
+  
+{% include 'main/bootstrap/footer.twig' %}

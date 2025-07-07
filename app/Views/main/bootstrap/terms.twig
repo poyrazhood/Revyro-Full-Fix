@@ -1,0 +1,131 @@
+{% include 'main/bootstrap/header.twig' %}
+
+{% if user['auth'] %}
+
+{% else %}
+<style>
+  .app-content {padding-left:0}
+  
+   .nav-link {
+    @include border-radius($nav-pills-border-radius);
+      color: #fff !important;
+  }
+
+  .nav-link.active{
+    color: #fff !important;
+    background-color: #F44336 !important;
+    box-shadow: 0 5px 10px 0 rgb(244 67 54 / 50%);
+  }
+</style>
+
+    <div class="home-head">
+        <div class="home-head-bg" style="height:125px"></div>
+    </div>
+{% endif %}
+         <div class="app-content">
+            <div class=" {% if user['auth'] %} container-fluid {% else %} container {% endif %}">
+               <div class="row">
+                  <div class="col-lg-12">
+                  {% if user['auth'] %}
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-survey-line"></i>
+						<span class="pl-3"><strong>Kullanım Koşulları</strong><br>Sipariş vermeden önce mutlaka okuyun.</span>
+					</div>
+<nav>
+<style>
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #f44336;
+}
+a {
+    color: #fff;
+}
+.nav-pills .nav-link {
+    border-radius: 0.5rem;
+    background-color: #29262f;
+    margin-left: 0.5rem;
+}
+</style>
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Maddeler</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Kurallar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Kullanım Sözleşmesi</a>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent" style="background-color: #29262f;border-radius: 0.5rem;border: 1px solid #494450;">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="color:white;padding: 0.7rem;" >
+          <p> Lütfen {{ site['site_name'] }}'dan hizmet satın almadan önce aşağıdaki koşulları dikkatlice okuyun. {{ site['site_name'] }}'a kayıt olup, hizmetlerini kullanarak tüm koşulları okuduğunuzu, anladığınızı ve kabul ettiğinizi beyan edersiniz.<br>
+<br>
+Bu hüküm ve koşulları kabul etmiyor ya da etmediyseniz lütfen {{ site['site_name'] }} hizmetlerini kullanmayın.<p>
+      <h5> 1 - Genel Koşullar </h5>
+      <span> ● {{ site['site_name'] }}'dan aldığınız tüm hizmetler adınıza faturalandırılır.<br>
+● Varsayılan minimum ödeme tutarı 5TL'dir.<br>
+● {{ site['site_name'] }} servis fiyatlarını önceden haber vermeksizin herhangi bir zamanda değiştirebilir. Ödeme / Geri Ödeme politikası sabit kalır.<br>
+● {{ site['site_name'] }} herhangi bir hizmet için teslimat süresini garanti etmez. Servislerde yazılı olan başlama süreleri belirttimiz en yakın tahminlerdir.<br>
+● 1 Link için aynı anda sadece 1 sipariş girilebilir, 2 sipariş birden girildiğinde eksik gönderimler olabilir, sorumlusu {{ site['site_name'] }} değildir.<br>
+● {{ site['site_name'] }} Instagram, Facebook, Twitter veya sunduğu herhangi bir hizmet için, işlem yapılan hesabın askıya alınması, kapatılması gibi olası durumlarda mesuliyet kabul etmez.<br>
+● Tüm sistem üyelerine e-mail ve cep telefonuna çok sık olmamak kaydı ile sistemimiz hakkında bilgilendirici mesajlar gönderilebilir. Sisteme üye olarak tarafımıza iletişim hakkı vermiş olursunuz.<br>
+● Her servise verilen limit, hesap başına verilen limittir. Max 3k limitli bir servisten yararlanan hesap 4k çekim yapamaz.<br>
+● Ürünlerin karşılarında belirtilen ücretler 1.000 (1K) ücretidir.<br>
+</span><br>
+      <h5> 2- Hizmet </h5>
+      <span>● {{ site['site_name'] }} İnstagram/Twitter/Facebook veya başka bir Sosyal Medya hesabı için sadece "Görünüm" artırmaya yardımcı olmak için kullanılacaktır.<br>
+● {{ site['site_name'] }} yeni takipçiler ve etkileşim garantisi vermez, sadece ödeme yapılarak alınan miktarı garanti eder.<br>
+● Tüm bot hesapları gerçek görünüme dönüştürmek için çalışıyoruz, ancak hesaplarımızın %100 profil resimli, biyografili ve paylaşımlı hesaplar olacağının garantisini vermiyoruz.<br>
+● Gizli hesaplara işlem yapıldığında sorumluluk üyeye aittir. Sipariş vermeden önce lütfen hesabın herkese açık olduğundan emin olun.<br>
+ </span><br>
+      <h5> 3- İade Şartları </h5>
+      <span>
+● Yapılan ödemelerde geri iade mümkün değildir, {{ site['site_name'] }} hizmetlerinde kullanılması gereklidir.<br>
+● Instagram/Twitter/Facebook vb. servislerin ne zaman güncelleme yapabileceğini bilemeyiz, herhangi bir düşüş yaşanması halinde servis sağlayıcısı telafi yapmadığı sürece iade yapılamaz.<br>
+● Siparişler sisteme girildikten sonra iptal/iade talebiniz kabul edilmeyecektir. Eğer sipariş tamamlanmazsa/kısmen tamamlanırsa sistem otomatik olarak geri ödeme yapacaktır.<br>
+● {{ site['site_name'] }} yapılan ödemelerde herhangi bir ters ibraz, geri çekme söz konusu olursa üyeyi uzaklaştırma hakkını saklı tutar.<br>
+● Yetkisiz işlem veya çalıntı kredi kartı, herhangi bir hileli faliyette üye hesabı istisnasız kapatılacaktır.<br>
+● Üye eğer bakiye yükleyip kendi banka hesabına ödemeyi geri istiyorsa hicbir şekilde iade yapılmayacaktır banka hesabına iade isteyen kişilerin bir daha sisteme bakiye ekleme sistemi kapatılacaktır.</span><br>
+      <h5> 4- Gizlilik Politikası </h5>
+      <span> ● Bu politika kişisel bilgilerinizin nasıl kullanacağını kapsar. Gizliliğiniz bizim için önemlidir ve korumak için her türlü önlem alınmaktadır.<br>
+● Sisteme girilen tüm bilgiler şifreli ve güvenli sunucularda barındırılır.<br>
+● Bilgileriniz hiçbir şekilde 3. kişiler ile paylaşılmaz.<br></span>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" style="color:white;padding: 0.7rem;"> <br><h5> Kuralları dikkatlice okumanız şiddetle önerilir. </h5><br>
+    <p>1 - Lütfen Sipariş Verirken Açıklamayı Okuyunuz.</p><br>
+    <p>2 - Lütfen Sipariş Verirken linke veya kullanıcı adına veriniz aksi halde çalışmayacaktır.</p><br>
+    <p>3 - Lütfen Destek Talebi açarken probleminizi açık bir dille iletiniz.</p><br>
+    <p>4 - Lütfen Sorunlu servisleri destek talebi açarak bize iletiniz.</p><br>
+    <p>5 - Lütfen başınıza gelen bir ufak problemde, daha yeni olduğumuzu, zamanla iyileşeceğimizi göz önünde bulundurun.</p><br>
+    <p>6 - Lütfen alışveriş yapmadan önce kullanıcı sözleşmesini okuyunuz.</p><br>
+  </div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" style="color:white;padding: 0.7rem;">
+    
+						<div class="card-body p-4">
+							{{ contentText }}
+						</div>
+					</div>
+</div>
+                     {% else %}
+ <br>
+                          <br>
+                          <br>
+                     {% if contentText %}
+					<div class="card mb-4">
+						<div class="card-body p-4">
+							{{ contentText }}
+						</div>
+					</div>
+				{% endif %}
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+	
+         </div>
+
+      </div>
+
+{% include 'main/bootstrap/footer.twig' %}

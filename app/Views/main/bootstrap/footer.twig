@@ -1,0 +1,227 @@
+{% if user['auth'] %}
+<div class="modal fade" id="popupModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="card" style="position: relative;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+            <div class="text-right cross"> <i class="fa fa-times" style="margin-right: .5rem;"></i> </div>
+            <div class="card-body text-center"> <img height="150" src="{{ site['url'] }}/assets/img/modal-icon.png">
+                <h4 id="modal-title">DUYURU!</h4>
+                <p id="modal-content"></p>
+            </div>
+        </div>
+    </div>
+</div>
+{{ footerCode }}
+
+{% for script in scriptList %}
+    <script type="text/javascript" src="{{ script }}"></script>
+{% endfor %}
+<script>
+    function popupShow(item, index){
+      $('#modal-title').html(item['baslik']);
+      $('#modal-content').html(item['icerik']);
+      $('#popupModal').modal('show');
+  }
+$.post( "/popup", function( data ) {
+  data['field'].forEach(popupShow);
+    
+    
+});
+</script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  var hash = location.hash;
+  var TicketModal = new bootstrap.Modal(document.getElementById('createTicket'));
+  
+  if (TicketModal) {
+    document.getElementById('createTicket').addEventListener('hide.bs.modal', (event) => {
+      setTimeout(function(){
+        history.replaceState("", document.title, window.location.pathname);
+      }, 1);
+    });
+  
+    document.getElementById('createTicket').addEventListener('show.bs.modal', event => {
+      window.location.hash = 'createTicket';
+    })
+  
+  }
+  
+  if(hash === '#createTicket') {
+    TicketModal.show();
+  }
+    
+  </script>
+  <script>
+      $(".pnd-notify").click(function () {
+  console.log("toggling sidebar");
+    $(".pnd-notify-box").toggleClass('active');
+});
+
+$(window).scroll(function() {
+	$(".pnd-notify-box").removeClass("active");
+});
+
+$('.sidebar-menu li').each(function(){
+    if(window.location.href.indexOf($(this).find('a:first').attr('href'))>-1)
+    {
+    $(this).addClass('active').siblings().removeClass('active');
+    }
+});
+
+function fAqactive() {
+        $(".ms-steps .card").on("click", function () {
+            $(".ms-steps .card").removeClass("active");
+            $(this).addClass("active");
+        });
+}
+fAqactive();
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+</body>
+</html>
+{% else %}
+<div class="modal fade" id="popupModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="card" style="position: relative;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+            <div class="text-right cross"> <i class="fa fa-times" style="margin-right: .5rem;"></i> </div>
+            <div class="card-body text-center"> <img height="150" src="{{ site['url'] }}/assets/img/modal-icon.png">
+                <h4 id="modal-title">DUYURU!</h4>
+                <p id="modal-content"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="copyright-text mt-5">
+    <p>Bütün Hakları Saklıdır | {{ site["site_name"] }} 2021</p> 
+</footer>
+<!--/.copyright-->
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="massiveLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-body massiveLogin-bg">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="hero-content text-center mb-5">
+                            <h1><b>{{ site["site_name"] }}</b></h1>
+                        </div>
+                        {% if errorText %}
+			              <div class="alert alert-dismissible alert-danger">
+			                <button type="button" class="close" data-dismiss="alert">×</button>
+			                {{ errorText }}
+			              </div>
+			              {% endif %}
+			              {% if successText %}
+			              <div class="alert alert-dismissible alert-success">
+			                <button type="button" class="close" data-dismiss="alert">×</button>
+			                {{ successText }}
+			              </div>
+			              {% endif %}
+                        <div class="mb-5 mb-sm-0">
+                            <form method="post" action="/#massiveLogin">
+                                <div class="form-group">
+                                    <label style="font-weight: bold;">Kullanıcı Adı</label>
+                                    <div class="m-card-input-box">
+                                        <div class="m-card-input-icon"><i class="far fa-user"></i></div>
+                                        <input type="text" class="form-control m-card-input" name="username">
+                                    </div>
+                                </div>                        
+                                <div class="form-group">
+                                    <label style="font-weight: bold;">Parola</label>
+                                    <div class="m-card-input-box">
+                                        <div class="m-card-input-icon"><i class="fas fa-key"></i></div>
+                                        <input type="password" class="form-control m-card-input" name="password">
+                                    </div>
+                                </div>
+                                <div class="float-left">
+                                    <div class="custom-control custom-checkbox">
+                                    	<input type="checkbox" class="custom-control-input" id="customCheck1" name="remember" value="1">
+                                      <label class="custom-control-label" for="customCheck1">Beni Hatırla</label>
+                                  </div>
+                              </div>
+                              {% if resetPage %}
+                              <div class="float-right">
+                                 <a class="m-card-a" href="/resetpassword">Parolamı Unuttum</a>
+                             </div>
+                             {% endif %}
+                             {% if settings['recaptcha'] == 2 %}
+                            {% if captcha %}
+										<div class="form-group">
+										  <div class="g-recaptcha" data-sitekey="{{ captchaKey }}"></div>
+										</div>
+									  {% endif %}
+									   {% endif %}
+									  <br>
+                             <div class="clearfix"></div>
+                             <div class="form-group mt-2">
+                                <button class="btn btn-header w-100"><i class="fas fa-sign-in-alt"></i> Oturum Aç</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+    <!--jquery-->
+    <script src="assets/boostrap/js/jquery-1.12.4.min.js"></script>
+    <!--bootstrap v4 js-->
+    <script src="assets/boostrap/js/vendor/bootstrap.min.js"></script>
+    <!--popper js-->
+    <script src="assets/boostrap/js/vendor/popper.min.js"></script>
+    <!--aos js-->
+    <script src="assets/boostrap/js/vendor/aos.js"></script>
+    <!--owl carousel -->
+    <script src="assets/boostrap/js/vendor/owl-carousel.js"></script>
+    <!--counter js-->
+    <script src="assets/boostrap/js/vendor/counter.js"></script>
+    <!--easing js-->
+    <script src="assets/boostrap/js/vendor/easing.js"></script>
+    <!--ajax contact-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
+    <!--main script-->
+    <script src="assets/boostrap/js/main.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuoVRm6rPCdR1c655zViYGonUKpe1wRUs&callback=initMap" async defer></script>
+<script>
+  var hash = location.hash;
+  var loginModal = new bootstrap.Modal(document.getElementById('massiveLogin'));
+  
+  if (loginModal) {
+    document.getElementById('massiveLogin').addEventListener('hide.bs.modal', (event) => {
+      setTimeout(function(){
+        history.replaceState("", document.title, window.location.pathname);
+      }, 1);
+    });
+  
+    document.getElementById('massiveLogin').addEventListener('show.bs.modal', event => {
+      window.location.hash = 'massiveLogin';
+    })
+  
+  }
+  
+  if(hash === '#massiveLogin') {
+    loginModal.show();
+  }
+    
+  </script>
+<script>
+    function popupShow(item, index){
+      $('#modal-title').html(item['baslik']);
+      $('#modal-content').html(item['icerik']);
+      $('#popupModal').modal('show');
+  }
+$.post( "/popup", function( data ) {
+  data['field'].forEach(popupShow);
+    
+    
+});
+</script>
+</body>
+</html>
+{% endif %}

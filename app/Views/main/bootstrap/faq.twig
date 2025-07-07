@@ -1,0 +1,149 @@
+{% include 'main/bootstrap/header.twig' %}
+
+{% if user['auth'] %}
+
+{% else %}
+<style>.app-content {padding-left:0}</style>
+
+    <div class="home-head">
+        <div class="home-head-bg" style="height:125px"></div>
+    </div>
+{% endif %}
+         <div class="app-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-questionnaire-line"></i>
+						<span class="pl-3"><strong>Sıkça Sorulan Sorular</strong></span>
+					</div>
+                     <section class="order-side">
+                        <div class="row">
+
+							   <div class="col-lg-12 col-12 mb-5 mb-lg-0">
+
+								  <div class="d-card mb-3">
+									 <div class="d-card-body"> 
+
+                              <div class="faq-ss-tabs">
+                                 <style>
+                                     .card-header button {
+                                        width: 100%;
+                                        border: 0;
+                                        outline: 0;
+                                        background: 0 0;
+                                        font-weight: 500;
+                                        color: #fff;
+                                        font-size: 18px;
+                                        text-align: left;
+                                        cursor: pointer;
+                                    }
+                                 </style>
+                                <div class="col-md-12">
+                                  <div id="accordion">
+                                      
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    <div class="card"  style="background: #1e2028;border-radius: 10px;padding: 16px 30px;color: #fff;margin-top:1rem;" >
+                                      <div class="card-header" style="background: #F44336;border-radius: 10px;padding: 16px 30px;color: #fff;" id="headingOne">
+                                        <h5 class="mb-0">
+                                          <button class="btnc collapsed" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1"> Sosyal Medya Boost Nedir? <i class="fa" aria-hidden="true"></i>
+                                          </button>
+                                        </h5>
+                                      </div>
+                            
+                                      <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                         Sosyal Medya Boost demek oluyor ki panelimizin dilimize uyarladığı terimiyle “Sanalizasyon”. Sanalizasyon; sosyal medya hesaplarının belirli bir kitleye sahip olduğunu varsayım olarak göstermek anlamına gelir. Varsayım (Sanalizasyon) olarak gösterilen profillerin görsel algı konusunu göze alarak, sosyal medya hesaplarının ulaşmak istedikleri hedeflere daha kolay ulaşabilmesi uygulamalarımızca her gün kanıtlanmaktadır.
+                                        </div>
+                                      </div>
+                                    </div><!--/.card-->
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    <div class="card"  style="background: #1e2028;border-radius: 10px;padding: 16px 30px;color: #fff;margin-top:1rem;" >
+                                      <div class="card-header" style="background: #F44336;border-radius: 10px;padding: 16px 30px;color: #fff;" id="heading2">
+                                        <h5 class="mb-0">
+                                          <button class="btnc collapsed" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">  Hesabım Risk Altında Mı? <i class="fa" aria-hidden="true"></i>
+                                          </button>
+                                        </h5>
+                                      </div>
+                            
+                                      <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                          Panelimiz üzerinden verilen siparişlerin sosyal medya hesaplarına olan etkisini an ve an kayıt ediyor ve gözlemliyoruz. Bilmenizi isteriz ki panelimiz uygulamaya girdiği tarihten itibaren, kullanıcılarımız tarafından kötüye kullanım olmadığı sürece hesaplarda herhangi bir risk gözlemlemedik. Fakat oluşacak herhangi bir problemden dolayı panelimizin hiçbir sorumluluğu almadığını bilmenizi isteriz. 
+                                        </div>
+                                      </div>
+                                    </div><!--/.card-->
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    <div class="card"  style="background: #1e2028;border-radius: 10px;padding: 16px 30px;color: #fff;margin-top:1rem;" >
+                                      <div class="card-header" style="background: #F44336;border-radius: 10px;padding: 16px 30px;color: #fff;" id="heading3">
+                                        <h5 class="mb-0">
+                                          <button class="btnc collapsed" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">  Hesabıma Etkisi Nedir? <i class="fa" aria-hidden="true"></i>
+                                          </button>
+                                        </h5>
+                                      </div>
+                            
+                                      <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordion" style="">
+                                        <div class="card-body">
+                                          Panelimiz üzerinden vereceğiniz siparişlerde kontrollü ve düzenli bir şekilde ilerleme izlerseniz etkisini göreceğinizden emin olabilirsiniz. Birkaç örnek ile açıklamamız gerekirse; Instagram üzerinden paylaştığınız gönderiler “Keşfet” bölümüne çıkar. Bu, sizin gönderinizin daha fazla Instagram kullanıcısına ulaşmasınız sağlar. Bir diğer örnek, Youtube üzerinden paylaştığınız videolarda “Önerilenler” bölümünde sürekli gözükme olasılığınız artar. Bu, sizin video paylaşımınızın daha fazla Youtube kullanıcı tarafından görülmesine yardımcı olur.
+                                        </div>
+                                      </div>
+                                    </div><!--/.card-->
+                                    <!-------------------------------------------------------------------------------------------------------------------------------------------->
+                                    
+                                    
+                                    
+                                  </div><!--/#accordion-->
+                                </div>
+                              </div>
+                                       
+									 </div>
+								  </div>  
+								  
+							   </div>
+						   
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+	
+         </div>
+
+      </div>
+
+{% if user['auth'] %}
+
+{% else %}
+	<footer class="footer">
+		<div class="container">
+			
+			 <div class="footer-content">
+				<div class="container">
+				   <div class="footer-menu">
+					  <div class="row">
+						 <div class="col-md-4 text-center">
+							<a href="/terms" class="footer-link">
+							İade Şartları
+							</a>
+						 </div>
+						 <div class="col-md-4 text-center">
+							<a href="/terms" class="footer-link">
+							Kullanıcı Sözleşmesi
+							</a>
+						 </div>
+						 <div class="col-md-4 text-center">
+							<a href="/terms" class="footer-link">
+							Gizlilik Politikası
+							</a>
+						 </div>
+					  </div>
+				   </div>
+				</div>
+			 </div>
+
+		</div>
+	</footer>
+{% endif %}
+  
+{% include 'main/bootstrap/footer.twig' %}

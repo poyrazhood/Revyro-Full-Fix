@@ -1,0 +1,75 @@
+{% include 'main/bootstrap/header.twig' %}
+
+{% if user['auth'] %}
+
+{% else %}
+<style>
+  .app-content {padding-left:0}
+  
+   .nav-link {
+    @include border-radius($nav-pills-border-radius);
+      color: #fff !important;
+  }
+
+  .nav-link.active{
+    color: #fff !important;
+    background-color: #F44336 !important;
+    box-shadow: 0 5px 10px 0 rgb(244 67 54 / 50%);
+  }
+</style>
+
+    <div class="home-head">
+        <div class="home-head-bg" style="height:125px"></div>
+    </div>
+{% endif %}
+         <div class="app-content">
+            <div class=" {% if user['auth'] %} container-fluid {% else %} container {% endif %}">
+               <div class="row">
+                  <div class="col-lg-12">
+                  {% if user['auth'] %}
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-survey-line"></i>
+						<span class="pl-3"><strong>İletişim</strong><br>Bize ulaşmak için aşağıdaki bilgileri kullanabilirsiniz..</span>
+					</div>
+<nav>
+<style>
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #f44336;
+}
+a {
+    color: #fff;
+}
+.nav-pills .nav-link {
+    border-radius: 0.5rem;
+    background-color: #29262f;
+    margin-left: 0.5rem;
+}
+</style>
+
+<div class="tab-content" id="pills-tabContent" style="background-color: #29262f;border-radius: 0.5rem;border: 1px solid #494450;">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="color:white;padding: 0.7rem;" >
+    {{ contentText }}
+  </div>
+</div>
+                     {% else %}
+ <br>
+                          <br>
+                          <br>
+                     {% if contentText %}
+					<div class="card mb-4">
+						<div class="card-body p-4">
+							{{ contentText }}
+						</div>
+					</div>
+				{% endif %}
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+	
+         </div>
+
+      </div>
+
+{% include 'main/bootstrap/footer.twig' %}

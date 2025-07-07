@@ -1,0 +1,32 @@
+{% include 'main/platinum/header.twig' %}
+<style>
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+</style>
+<div class="container">
+    <div class="row">
+        {% for post in blogList %}
+        <div class="col-md-4 col-md-offset-2">
+          
+            <div class="well">
+                <h3>{{ post['blog_title'] }}</h3>
+                {% if post['blog_image'] %}
+                  <p><img src="{{ post['blog_image'] }}" alt="{{ post['blog_title'] }}" class="img-responsive"></p>
+                {% endif %}  
+                <div class="img-fluid" style="max-width:100%; word-wrap: break-word;" >{{ post['blog_content'][:150] }}...</div>
+                <a href="{{ site['url'] }}/blog/{{ post['url'] }}" style="width:100%;" class="btn btn-primary">{{ lang['blog.read'] }}</a>
+            </div>
+             
+        </div>
+        {% endfor %} 
+    </div>
+</div>
+
+{% include 'main/platinum/footer.twig' %}

@@ -1,0 +1,196 @@
+{% include 'main/bootstrap/header.twig' %}
+<style>
+	.btn.btn-xs {
+    background: #ff4105;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px;
+    border-radius: 5px!important;
+    border: 1px solid rgb(255 255 255 / 25%);
+}
+
+@media screen and (max-width: 991.98px) {
+  .home-phone, .head-text, .head-links { display: none; }
+  .app-logo img { height: 45px; }
+  .app-tos .nav-item.nav-link { width: 100%; }
+  .mob-nav { display: block !important; }
+  .dashboard-head .dhead-content .row-s2 > div { font-size: 11px; }
+  .card .card-header span.sname, .card .card-header span.sdetails { line-height: 20px !important; }
+  .card .card-header .ordStatus, .card .card-header .btn.btn-secondary { margin-top: 10px; }
+  .app-ord-nav li { width: 49%; margin-top: 0px; margin-bottom: 0px; margin-left: 1%; margin-right: auto !important; }
+  .orders-btn { padding-bottom: 0px !important; }
+  .for-mobile { display: block; }
+  .app-mtable { display: block; }
+  .app-mtable.flexs { display: flex; }
+  .table.app-mtable tbody { width: 100% !important; }
+  .app-mtable .app-block { padding: 5px 0px; display: block; background: rgb(41, 38, 47); margin-bottom: 10px; border-radius: 10px; border-bottom: 2px solid rgb(255, 255, 255); }
+  .table td { border: none; }
+  .app-mtable .app-block .app-col { margin-bottom: 5px; border-bottom: 0px; border-left: 0px; border-right: 0px; display: flex; align-items: center; font-size: 11px; padding: 2px 16px; }
+  .app-mtable .app-block .app-col::before { margin-bottom: 3px; content: attr(data-title); min-width: 98px; font-size: 10px; line-height: 10px; font-weight: 700; text-transform: uppercase; color: rgb(168, 175, 217); display: block; }
+  .app-mtable .thead-tr { display: none !important; }
+  .catetitle td strong { font-size: 14px; font-weight: 300; }
+  .app-navbar { display: block !important; }
+  .orders-btn { padding-bottom: 0px !important; }
+  .footer { padding-bottom: 100px; }
+}
+</style>
+<div class="app-content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="top-notice d-flex align-items-center">
+					<i class="ri-inbox-archive-line"></i>
+					<span class="pl-3"><strong>Siparişlerim</strong><br>Siparişlerinizi bu sayfadan görüntüleyebilirsiniz.</span>
+				</div>
+				<section class="order-side">
+					<div class="row">
+						<div class="col-lg-12 col-12 mb-5 mb-lg-0">
+							<div class="d-card mb-3">
+								<div class="d-card-body"> 
+									<div class="row" style="margin-bottom:0.5rem;">
+										<div class="col-md-auto mb-3 mb-md-0">
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Sipariş Durumu
+												</button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item" href="orders">{{ lang['orders.status.all'] }}</a>
+													<a class="dropdown-item" href="orders/pending">{{ lang['orders.status.pending'] }}</a>
+													<a class="dropdown-item" href="orders/inprogress">{{ lang['orders.status.inprogress'] }}</a>
+													<a class="dropdown-item" href="orders/completed">{{ lang['orders.status.completed'] }}</a>
+													<a class="dropdown-item" href="orders/partial">{{ lang['orders.status.partial'] }}</a>
+													<a class="dropdown-item" href="orders/processing">{{ lang['orders.status.processing'] }}</a>
+													<a class="dropdown-item" href="orders/canceled">{{ lang['orders.status.canceled'] }}</a>
+												</div>
+											</div>
+										</div>
+										<div class="col">
+											<form action="" method="get">
+												<div class="input-group">
+													<input class="form-control" type="text" name="search" value="{{ search }}" placeholder="Siparişleri ara" placeholder="Sipariş Ara">
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="d-card" style="word-break: break-all;">
+                            <div class="d-card-body">
+                                <div id="datable_wrapper" class="dataTables_wrapper no-footer"><div id="datable_filter" class="dataTables_filter" style="display: none;"><label>Search:<input type="search" class="app-ord-input" placeholder="" aria-controls="datable"></label></div><table id="datable" class="table app-mtable flexs dataTable no-footer" role="grid">
+
+                                    <thead>
+                                    <tr class="thead-tr" role="row"><th style="width: 0px;" class="sorting sorting_desc" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-sort="descending" aria-label="#: activate to sort column ascending">#</th><th style="width: 0px;" class="sorting" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Tarih: activate to sort column ascending">Tarih</th><th style="width: 0px;" class="sorting" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Bağlantı: activate to sort column ascending">Bağlantı</th><th class="nowrap sorting" style="width: 0px;" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Ücret: activate to sort column ascending">Ücret</th><th class="nowrap sorting" style="width: 0px;" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Başlangıç Sayısı: activate to sort column ascending">Başlangıç Sayısı</th><th style="width: 0px;" class="sorting" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Miktar: activate to sort column ascending">Miktar</th><th class="nowrap sorting" style="width: 0px;" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Servis: activate to sort column ascending">Servis</th><th class="nowrap sorting" style="width: 0px;" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Kalan: activate to sort column ascending">Kalan</th><th class="nowrap sorting" style="width: 4rem;" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="Durum: activate to sort column ascending">Durum</th><th style="width: 0px;" class="sorting" tabindex="0" aria-controls="datable" rowspan="1" colspan="1" aria-label="İşlemler: activate to sort column ascending">İşlemler</th></tr>
+                                    </thead>
+
+                                    <tbody>
+											{% for order in orders %}
+											
+											
+                                    <tr class="app-block odd">
+
+				<td class="app-col sorting_1" data-title="ID">{{ order['id'] }}</td>
+
+				<td class="app-col" data-title="Tarih">{{ order['date'] }}</td>
+
+				<td class="app-col" data-title="Link"><a href="{{ order['link'] }}">{{ order['link'] }}</a></td>
+
+				<td class="app-col" data-title="Ücret">{{ order['charge'] }} {{ site['currency'] }}</td>
+
+				<td class="app-col" data-title="Başlangıç">{{ order['start_count'] }}</td>
+
+				<td class="app-col" data-title="Miktar">{{ order['quantity'] }}</td>
+
+				<td class="app-col" data-title="Servis">{{ order['service'] }}</td>
+				
+				<td class="app-col" data-title="Kalan">{{ order['remains'] }}</td>
+
+				<td class="app-col" data-title="Durum">{% if order['status'] == lang['orders.status.completed'] %}
+													<span class="bdge-green">{{ order['status'] }}</span>
+													{% endif %}
+													{% if order['status'] == lang['orders.status.inprogress'] %}
+													<span  class="bdge-blue">{{ order['status'] }}</span>
+													{% endif %}
+													{% if order['status'] == lang['orders.status.pending'] %}
+													<span  class="bdge-light">{{ order['status'] }}</span>
+													{% endif %}
+													{% if order['status'] == lang['orders.status.partial'] %}
+													<span  class="bdge-orange">{{ order['status'] }}</span>
+													{% endif %}
+													{% if order['status'] == lang['orders.status.processing'] %}
+													<span  class="bdge-blue">{{ order['status'] }}</span>
+													{% endif %}
+													{% if order['status'] == lang['orders.status.canceled'] %}
+													<span  class="bdge-red">{{ order['status'] }}</span>
+													{% endif %}</td>
+				
+                                                    {% if order['refillButton'] %}
+                                                    <td class="app-col" data-title="Telafi"><a href="/orders/refill/{{ order['id'] }}" class="btn btn-xs btn-primary">{{ lang['orders.button.refill'] }}</a></td>
+													{% endif %}
+                                                    {% if order['cancelButton'] %}
+                                                    <td class="app-col" data-title="İptal"><a href="/orders/cancel/{{ order['id'] }}" class="btn btn-xs btn-primary">{{ lang['orders.button.cancel'] }}</a></td>
+													{% endif %}
+                                                    </tr>
+                            
+											{% endfor %}
+                                            
+										</tbody>
+									</table>
+
+                                    </div>
+
+                            </div>
+                        </div>
+									
+									{% if pagination["count"] > 1 %}
+									<ul class="pagination">
+
+										{% if pagination["current"] != 1 %}
+										<li>
+											<a href="orders/{{ status }}/{{ pagination["previous"] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Previous">
+												<span aria-hidden="true">«</span>
+											</a>
+										</li>
+										{% endif %}
+
+										{% set r, l = 3, 3 %}
+
+										{% if pagination['current'] == 1 %}
+										{% set r = 7 %}
+										{% endif %}
+
+										{% if pagination['current'] == 2 %}
+										{% set r = 5 %}
+										{% endif %}
+
+										{% if pagination['current'] >= pagination['count'] %}
+										{% set l = 5 %}
+										{% endif %}
+
+										{% for page in 1..pagination["count"] %}
+										{% if page >= (pagination['current']-l) and page <= (pagination['current']+r) %}
+										<li{% if page == pagination['current'] %} class="active" {%endif%}><a href="orders/{{ status }}/{{ page }}{% if search %}?search={{ search }}{% endif %}">{{ page }}</a></li>
+										{%endif%}
+										{% endfor %}
+
+										{% if pagination['current'] < pagination['count'] %}
+										<li>
+											<a href="orders/{{ status }}/{{ pagination['next'] }}{% if search %}?search={{ search }}{% endif %}" aria-label="Next">
+												<span aria-hidden="true">»</span>
+											</a>
+										</li>
+										{% endif %}
+
+									</ul>
+									{% endif %}
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+{% include 'main/bootstrap/footer.twig' %}

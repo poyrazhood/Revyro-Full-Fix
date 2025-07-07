@@ -1,0 +1,33 @@
+ <div class="modal fade" id="popupModal" role="dialog" >
+    <div class="modal-dialog">
+        <div class="card" style="position: relative;display: -ms-flexbox;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+            <div class="text-right cross"> <i class="fa fa-times" style="margin-right: .5rem;"></i> </div>
+            <div class="card-body text-center"> <img height="150" src="{{ site['url'] }}/assets/img/modal-icon.png">
+                <h4 id="modal-title">DUYURU!</h4>
+                <p id="modal-content"></p>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+  {% for script in scriptList %}
+  <script type="text/javascript" src="{{ script }}"></script>
+  {% endfor %}
+
+  {{ footerCode }}
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function popupShow(item, index){
+      $('#modal-title').html(item['baslik']);
+      $('#modal-content').html(item['icerik']);
+      $('#popupModal').modal('show');
+  }
+$.post( "/popup", function( data ) {
+  data['field'].forEach(popupShow);
+    
+    
+});
+</script>
+</body>
+</html>

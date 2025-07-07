@@ -1,0 +1,119 @@
+{% include 'main/bootstrap/header.twig' %}
+         <div class="app-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-star-smile-line menu-icon"></i>
+						<span class="pl-3"><strong>Referans Sistemi</strong><br>Referans kazanç bilgilerini bu sayfadan görebilirsin.</span>
+					</div>
+                     <section class="order-side">
+                        <div class="row">
+                           <div class="col-lg-7 col-12 mb-5 mb-lg-0">
+
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+                                        <div class="ref-items">
+                                            <div class="ref-item">
+                                                Referans Linkiniz: <span>{{ site['url'] }}/ref/{{ user["referral_code"] }}</span>
+                                            </div>
+                                            <div class="ref-item">
+                                                Komisyon Oranımız: <span>{{ settings["ref_bonus"] }}%</span>
+                                            </div>
+                                            <div class="ref-item">
+                                                Referans Tipi: <span>{% if settings["ref_type"] == 1 %}{{ lang['affiliates.type.first'] }}{% else %}{{ lang['affiliates.type.all'] }}{% endif %}</span>
+                                            </div>
+                                            <div class="ref-item">
+                                                <div class="row">
+                                                    <div class="col-auto align-self-center">
+                                                        <i class="fas fa-info-circle fa-2x" style="color: #dc3545;"></i>
+                                                    </div>
+                                                    <div class="col align-self-center text-style-2">
+                                                        Referans linkinizle panelimize kayıt olan kişilerin tüm bakiye ekleme işlemlerinde ödediği ücretin %5'inin hesabınıza tanımlandığı referans sistemi kullanıma açılmıştır.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										
+                                        <div class="ref-items ref-sm">
+                                            <div class="ref-item">
+                                                <div class="row">
+                                                    <div class="col-auto align-self-center icon">
+                                                        <i class="ri-cursor-line"></i>
+                                                    </div>
+                                                    <div class="col the-title align-self-center">
+                                                       {{ lang['affiliates.click'] }}
+                                                    </div>
+                                                    <div class="col-auto the-text align-self-center text-right">
+                                                        {{ user['total_click'] }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- item end -->
+                                            <div class="ref-item">
+                                                <div class="row">
+                                                    <div class="col-auto align-self-center icon">
+                                                        <i class="ri-user-shared-line"></i>
+                                                    </div>
+                                                    <div class="col the-title align-self-center">
+                                                        {{ lang['affiliates.total.user'] }}
+                                                    </div>
+                                                    <div class="col-auto the-text align-self-center text-right">
+                                                        {{ refCount }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- item end -->
+                                            <div class="ref-item">
+                                                <div class="row">
+                                                    <div class="col-auto align-self-center icon">
+                                                        <i class="ri-money-dollar-circle-line"></i>
+                                                    </div>
+                                                    <div class="col the-title align-self-center">
+                                                        {{ lang['affiliates.total.win'] }}
+                                                    </div>
+                                                    <div class="col-auto the-text align-self-center text-right">
+                                                        {{ user['refchar'] }}{{ site['currency'] }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- item end -->
+                                        </div>
+			
+                                 </div>
+                              </div>  
+							  
+                           </div>
+						   
+                           <div class="col-lg-5 col-12 mb-5 mb-lg-0">
+						
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+									  <div class="d-card-head">
+											Referans ol kazan!
+									  </div>
+									  
+									 <p class="mt-2">Referans linkinizle sitemize kayıt olan kişilerin tüm bakiye ekleme işlemlerinde ödediği ücretin %5'inin hesabınıza tanımlandığı referans sistemi kullanıma açılmıştır.</p>
+
+<p class="mt-2">Tek yapmanız gereken Davet Linkiniz üzerinden sitemize üye kazandırmanız. Unutmayın, sadece hesabınıza tanımlanan link üzerinden kayıt açan üyeliklerden bonus kazanacaksınız, davet sınırı yok!</p>
+                                   
+<a href="/tickets" class="btn btn-secondary btn-lg btn-block">Destek Merkezi</a>
+									
+                                 </div>
+                              </div>
+							  
+                           </div>
+						   
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+	
+         </div>
+
+      </div>
+  
+{% include 'main/bootstrap/footer.twig' %}

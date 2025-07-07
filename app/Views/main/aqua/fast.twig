@@ -1,0 +1,106 @@
+{% include 'main/aqua/header.twig' %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well ">
+        <h4 class="text-center">Hızlı Sipariş</h4>
+        <form>
+
+          <div class="form-group">
+            <label for="orderform-category" class="control-label">Kategori</label>
+            <select class="form-control" id="neworder_category" name="categories">
+              <option value="-1">Favorite</option>
+              <option value="3">Custom Comment</option>
+              <option value="4">Test</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="orderform-category" class="control-label">Servisler</label>
+            <select class="form-control" id="neworder_category" name="categories">
+              <option value="-1">Favorite</option>
+              <option value="3">Custom Comment</option>
+              <option value="4">Test</option>
+            </select>
+          </div>
+          <div class="description" style="background:#eee;padding:15px;margin-bottom:10px;border-radius:7px;">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </div>
+          <div id="neworder_fields"><div class="form-group fields" id="order_link">
+            <label class="control-label" for="field-orderform-fields-link">Link</label>
+            <input class="form-control" name="link" value="" type="text" id="field-orderform-fields-link">
+          </div><div class="form-group fields" id="order_quantity">
+            <label class="control-label" for="field-orderform-fields-quantity">Miktar</label>
+            <input class="form-control" name="quantity" value="" type="text" id="neworder_quantity">
+          </div>
+          <small class="help-block min-max">Min: 200 - Max: 5.000</small>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="well">
+      <div class="form-group fields" id="order_quantity">
+      <label class="control-label" for="field-orderform-fields-quantity">Ad Soyad</label>
+      <input class="form-control" name="eposta" placeholder="isminiz@posta.com" type="text">
+    </div>
+    <div class="form-group fields" id="order_quantity">
+      <label class="control-label" for="field-orderform-fields-quantity">E-Mail</label>
+      <input class="form-control" name="eposta" placeholder="isminiz@posta.com" type="text">
+    </div>
+    <div class="form-group fields" id="order_quantity">
+      <label class="control-label" for="field-orderform-fields-quantity">Telefon</label>
+      <input class="form-control" name="eposta" placeholder="isminiz@posta.com" type="text">
+    </div>
+    <button type="submit" class="btn btn-primary">Sipariş ver (12.00₺)</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container collapse" id="collapse">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <h4 class="text-center">Sipariş Sorgula</h4>
+        <div class="form-group fields" id="order_quantity">
+          <label class="control-label" for="field-orderform-fields-quantity">E-Posta</label>
+          <input class="form-control" name="eposta" placeholder="isminiz@posta.com" type="text">
+        </div>
+        <button type="submit" class="btn btn-primary">Sorgula</button>
+        <hr>
+        <table class="rwd-table table table-striped table-sm ">
+          <thead class="thead-dark">
+           <tr>
+            <th>Ad Soyad</th>
+            <th class="width-40">Bağlantı</th>
+            <th>Ücret</th>
+            <th class="nowrap">Başlangıç Sayısı</th>
+            <th>Miktar</th>
+            <th>Servis Adı</th>
+            <th>Sipariş Durumu</th>
+            <th>Kalan</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Merthan</td>
+            <td>nasa</td>
+            <td>0.24 ₺</td>
+            <td class="nowrap">0</td>
+            <td>200</td>
+            <td>Instagram Takipçi Servisi</td>
+            <td>Sipariş Alındı</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+{% include 'main/aqua/footer.twig' %}

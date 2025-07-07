@@ -1,0 +1,331 @@
+{% include 'main/bootstrap/header.twig' %}
+<header class="hero-section" id="home">
+
+  <!--line shape background animation-->
+  <div class="container-line">
+    <div class="container-line-center">
+     <div class="line-item one"></div>
+     <div class="line-item two"></div>
+     <div class="line-item three"></div>
+     <div class="line-item four"></div>
+   </div>
+ </div>
+ <!--line shape background animation-->
+
+
+ <div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row h-100">
+        <div class="col-md-12 align-self-center">
+          <div class="hero-content">
+            <h1>Türkiye'nin En Gelişmiş <b>Sosyal Medya Paneli</b></h1>
+            <p>7/24 Tam otomatik olarak hizmet alabileceğiniz panelimiz bütün sosyal medya platformaları için hizmet sağlamaktadır.</p>
+            <div class="btn-group">
+              <a data-toggle="modal" data-target="#massiveLogin"  class="btn"><i class="far fa-user"></i> {{ lang['signin.title'] }}</a>
+              {% if registerPage %}<a href="/signup" class="btn"><i class="fas fa-list"></i> {{ lang['signup.title'] }}</a>{% endif %}
+            </div>
+          </div><!--/.hero-content-->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 pos-r">
+      <div class="row justify-content-md-center justify-content-sm-center">
+        <div class="col-md-auto col-sm-auto">
+          <div class="banner-app-mock mx-auto">
+            <!--mobile inside image-->
+            <img src="/assets/img/hero-1.png" class="main-img" alt=""/>
+            <!--mobile mockup-->
+            <img src="/assets/img/mobile-mock.png" class="mockup" alt=""/>
+
+          </div><!--/.banner-app-mock-->
+        </div>
+      </div>
+      <div class="mobile-graphic">
+        <!--mobile graphic-->
+        <img src="/assets/img/mobile-graphic.png" alt="" class="moc-grp">
+      </div>
+    </div>
+  </div>
+</div><!--/.container-->
+</header>
+<!--/.hero section-->
+
+<!--app feature-->
+<section class="app-feature-sec" id="feature">
+  <!--line shape background animation-->
+  <div class="container-line">
+    <div class="container-line-center">
+     <div class="line-item one"></div>
+     <div class="line-item two"></div>
+     <div class="line-item three"></div>
+     <div class="line-item four"></div>
+   </div>
+ </div>
+ <!--line shape background animation-->
+ <div class="container">
+  <div class="row align-items-center">
+    <div class="col-md-8 offset-md-2">
+      <div class="title">
+        <h3>{{ site["site_name"] }}</h3>
+        <p>Sizler için her zaman sıkı çalışan destek ekibimiz ile birlikte bütün sosyal medya işlerinizi tek platformdan gerçekleştirin.</p>
+      </div><!--/.title-->
+    </div>
+    <div class="w-100"></div>
+    <div  class="col-md-6">
+      <div class="app-mock-up-img">
+        <div class="row justify-content-md-center justify-content-sm-center">
+          <div class="col-md-auto col-sm-auto">
+            <div class="banner-app-mock d-none d-sm-block">
+              <!--mobile inside image-->
+              <img src="/assets/img/hero-2.png" class="main-img" alt=""/>
+              <!--mobile mockup-->
+              <img src="/assets/img/mobile-mock.png" class="mockup" alt=""/>
+
+            </div><!--/.banner-app-mock-->
+          </div>
+        </div>
+        <div class="mobile-graphic  d-none d-sm-block">
+          <!--mobile graphic-->
+          <img src="/assets/img/mobile-graphic.png" alt="" class="moc-grp">
+        </div>
+      </div>
+    </div>
+    <div  class="col-md-5 offset-md-1">
+      <div class="feature-inside">
+        <ul class="hero-2">
+          <li>
+            <i class="far fa-credit-card"></i>
+            <h4>Uygun Fiyatlar</h4>
+            <p>{{ site["site_name"] }} her zaman müşterilerinin en uygun fiyatlardan hizmet alması için çaba gösterir.</p>
+          </li>
+          <li>
+            <i class="fas fa-tachometer-alt"></i>
+            <h4>Hızlı Servisler</h4>
+            <p>Uygun fiyatların yanı sıra sizleri bekletmeyi asla istemeyiz. En hızlı servisler ile tanışın.</p>
+          </li>
+          <li>
+            <i class="fas fa-headset"></i>
+            <h4>7/24 Destek</h4>
+            <p>İşinde uzman ekibimiz sorunlarınızı asla çözümsüz bırakmaz.</p>
+          </li>
+        </ul>
+        <div class="btn-group row w-100 mx-auto">
+          <div class="col-md-6"><a href="#" class="btn text-center"><i class="fas fa-check-circle fa-3x"></i> Başarılı Sipariş <br><strong style="font-size: 25px;">2684589</strong></a></div>
+          <div class="col-md-6 text-sm-right mt-3 mt-sm-0"><a href="#" class="btn text-center"><i class="far fa-user-circle fa-3x"></i> Mutlu Müşteri <br><strong style="font-size: 25px;">1269</strong></a></div>
+        </div>
+      </div><!--/.feature-inside-->
+    </div>
+  </div>
+</div><!--/.container-->
+</section>
+<!--/.app feature-->
+
+<!--about app-->
+<section class="about-app-sec" id="services">
+  <!--line shape background animation-->
+  <div class="container-line">
+    <div class="container-line-center">
+     <div class="line-item one"></div>
+     <div class="line-item two"></div>
+     <div class="line-item three"></div>
+     <div class="line-item four"></div>
+   </div>
+ </div>
+ <!--line shape background animation-->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="title">
+        <h3>Neden {{ site["site_name"] }}?</h3>
+        <p>{{ site["site_name"] }} kurulduğu tarihten bu yana tamamen müşteri odaklı hizmet vermektedir. En kaliteli servisleri mümkün olan en uygun fiyatlar ile sizlerle buluşturmaktadır.</p>
+        <p>Siz de hizmetlerimizi denemenizi heyecan ile bekliyoruz.</p>
+        {% if registerPage %}<a href="/signup" class="btn"><i class="fas fa-list"></i> {{ lang['signup.title'] }}</a>{% else %}<a data-toggle="modal" data-target="#massiveLogin" class="btn">{{ lang['signin.title'] }}</a>{% endif %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="special-graphic shake-vertical">
+        <img src="/assets/img/hero-3.png" alt=""/>
+        <!--overlay image-->
+        <img src="/assets/img/icon/svg-mock.png" alt="" class="mock">
+      </div>
+    </div>
+  </div>
+</div><!--/.container-->
+</section>
+<!--/.about app-->
+
+
+
+<!--testimonials-->
+<section class="testimonials-sec">
+  <!--line shape background animation-->
+  <div class="container-line">
+    <div class="container-line-center">
+     <div class="line-item one"></div>
+     <div class="line-item two"></div>
+     <div class="line-item three"></div>
+     <div class="line-item four"></div>
+   </div>
+ </div>
+ <!--line shape background animation-->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="title">
+        <h3>Müşteri Yorumları</h3>
+        <p>Bir firmayı tanıyabilmenin en iyi yolu müşterilerini dinlemektir. İşte bizimle çalışan saygı değer müşterilerimizin değerli yorumları.</p>
+      </div><!--title-->
+    </div>
+
+    <div class="col-md-8">
+      <div class="owl-carousel" id="testimonial-owl">
+        <div>
+          <div class="single-testi">
+            <p class="text-center">"{{ site["site_name"] }} ile neredeyse her gün düzenli olarak çalışıyoruz. Henüz hiçbir problem yaşamadık."</p>
+            <hr class="w-100 my-hr">
+            <div class="media">
+              <div class="media-body text-center">
+                <h4>Abdullah Mücahit USTA</h4>
+                <h5>R10.net Müşterisi</h5>
+              </div>
+            </div>
+          </div><!--/.single-testi-->
+        </div>
+        <div>
+          <div class="single-testi">
+            <p class="text-center">"Sosyal medya hesaplarımızı fenomen bir hale getirmek için tek tercihimiz {{ site["site_name"] }} oldu".</p>
+            <hr class="w-100 my-hr">
+            <div class="media">
+              <div class="media-body text-center">
+                <h4>Melike Duymaz</h4>
+                <h5>Sosyal Medya Müşterisi</h5>
+              </div>
+            </div>
+          </div><!--/.single-testi-->
+        </div>
+        <div>
+          <div class="single-testi">
+            <p class="text-center">"Firmamızın bütün hesaplarını {{ site["site_name"] }} üzerinden geliştiriyoruz. Hemen her alanda bize yardımcı oluyorlar."</p>
+            <hr class="w-100 my-hr">
+            <div class="media">                                    
+              <div class="media-body text-center">
+                <h4>Ahmet Erdinç</h4>
+                <h5>R10.net Müşterisi</h5>
+              </div>
+            </div>
+          </div><!--/.single-testi-->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div><!--/.container-->
+</section>
+<!--/.testimonials-->
+
+<!--faq ask-->
+<section class="faq-sec" id="faq">
+  <!--line shape background animation-->
+  <div class="container-line">
+    <div class="container-line-center">
+     <div class="line-item one"></div>
+     <div class="line-item two"></div>
+     <div class="line-item three"></div>
+     <div class="line-item four"></div>
+   </div>
+ </div>
+ <!--line shape background animation-->
+ <div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="title text-center">
+        <h3>Sıkça Sorulan Sorular</h3>
+        <p>Panelimizi kullanan müşterilerimizin en çok sorduğu sorular</p>
+      </div><!--/.title-->
+    </div>
+    <div class="w-100"></div>
+    <div class="col-md-6">
+      <div class="app-mock-up-img">
+        <div class="row justify-content-md-center justify-content-sm-center">
+          <div class="col-md-auto col-sm-auto">
+            <div class="banner-app-mock d-none d-sm-block">
+              <!--mobile inside image-->
+              <img src="/assets/img/hero-4.png" class="main-img" alt=""/>
+              <!--mobile mockup-->
+              <img src="/assets/img/mobile-mock.png" class="mockup" alt=""/>
+
+            </div><!--/.banner-app-mock-->
+          </div>
+        </div>
+        <div class="mobile-graphic d-none d-sm-block">
+          <!--mobile graphic-->
+          <img src="/assets/img/mobile-graphic.png" alt="" class="moc-grp">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="accordion">
+
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btnc" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Nasıl Kayıt Olabilirim? <i class="fa" aria-hidden="true"></i>
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              Üst menüde yer alan "Kayıt Ol" butonuna tıkladıktan sonra açılan sayfaya bilgilerinizi girerek kolay bir şekilde kayıt olabilirsiniz. Çeşitli sosyal medya bilgilerinizi talep etmiyoruz.
+            </div>
+          </div>
+        </div><!--/.card-->
+
+        <div class="card">
+          <div class="card-header" id="headingtwo">
+            <h5 class="mb-0">
+              <button class="btnc collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Nasıl Bakiye Yükleyebilirim?<i class="fa" aria-hidden="true"></i>
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingtwo" data-parent="#accordion">
+            <div class="card-body">
+              {{ site["site_name"] }} online ödeme için yetkili kuruluş olan "PayTR" ile çalışmaktadır. Bu sayede 7/24 otomatik olarak ödeme yapabilir ve hizmetlerimizi kullanmaya hemen başlayabilirsiniz.
+            </div>
+          </div>
+        </div><!--/.card-->
+
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btnc collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Şifrem Gerekiyor mu? <i class="fa" aria-hidden="true"></i>
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Hayır. {{ site["site_name"] }} kesinlikle sosyal medya hesaplarınızın şifresini sizden talep etmemektedir. Tamamen güvenilir bir şekilde kayıt oluşturup panelimizi kullanmaya başlayabilirsiniz.
+            </div>
+          </div>
+        </div><!--/.card-->
+
+
+
+      </div><!--/#accordion-->
+    </div>
+  </div>
+</div><!--/.container-->
+</section>
+
+{% for lang in site['languages'] %}
+{% if lang['active'] %}
+<script src="https://www.google.com/recaptcha/api.js?hl={{ lang['code'] }}"></script>
+{% endif %}
+{% endfor %}
+
+
+{% include 'main/bootstrap/footer.twig' %}

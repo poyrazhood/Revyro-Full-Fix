@@ -1,0 +1,218 @@
+{% include 'main/bootstrap/header.twig' %}
+         <div class="app-content">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-lg-12">
+					<div class="top-notice d-flex align-items-center">
+						<i class="ri-chat-smile-line"></i>
+						<span class="pl-3"><strong>Destek Talebi</strong><br>Destek talebi oluşturmadan SSS sayfasını okuyun.</span>
+					</div>
+                     <section class="order-side">
+                        <div class="row">
+                           <div class="col-lg-12 col-12 mb-5 mb-lg-0">
+
+                              <div class="d-card mb-3">
+                                 <div class="d-card-body"> 
+
+                                    <div class="pnd-msg-box">
+                                       <button class="pnd-tbox-open">
+											<i class="ri-coupon-line"></i>
+									   </button>
+                                       <div class="w-100">
+                                          <div class="row">
+                                             <div class="col-sidebar col">
+											 {% if ticketList %}
+                                                <ul id="pnd-tlisting" class="pnd-tlist list-unstyled content-light-border">
+												{% for ticket in ticketList %}
+                                                   <li>
+                                                      <a href="tickets/{{ ticket['ticket_id'] }}" data-id="{{ ticket['id'] }}" class="pnd-titem pnd-titem-link">
+                                                         <div class="pnd-tinfo">
+                                                            <p class="pnd-tname">{{ ticket['subject'] }}</p>
+															<small>{{ ticket['lastupdate_time'] }}</small>
+                                                            
+															{% if ticket['status'] == lang['tickets.status.answered'] %}
+                                                            <span class="pnd-tstatus completed text-right">
+																{{ ticket['status'] }}
+                                                            </span>
+															{% endif %}               
+															{% if ticket['status'] == lang['tickets.status.pending'] %}
+                                                            <span class="pnd-tstatus pending text-right">
+																{{ ticket['status'] }}
+                                                            </span>
+															{% endif %}
+															{% if ticket['status'] == lang['tickets.status.closed'] %}
+                                                            <span class="pnd-tstatus closed text-right">
+																{{ ticket['status'] }}
+                                                            </span>
+															{% endif %}
+                                                         </div>
+                                                      </a>
+                                                   </li>
+												{% endfor %}
+
+                                                </ul>
+												{% endif %}
+											
+                                             </div>
+                                             <div class="col-content col">
+												<div class="ticket-create d-flex align-items-center justify-content-center">
+												  <div class="d-flex flex-column align-items-center">
+													<span class="pnd-ticket-head">Destek Talebi Oluştur</span>
+													<span class="pnd-ticket-desc text-center">Destek talebi oluşturmadan önce Sıkça Sorulan Sorular kısmını kontrol ediniz. Aradığınız cevabı bulamadıysanız destek talebi oluşturmak için tıklayın.
+													</span>
+													<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#createTicket">Talep Oluştur
+													</button>
+												  </div>
+												</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+			
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </section>
+                  </div>
+               </div>
+            </div>
+			
+			 <template id="clientChatTemplate" type="text/template">
+				<div class="row ticket-message-block ticket-message-right">
+				  <div class="col-custom text-right">
+					<div class="ticketCustomerBox d-inline-block">
+					  <div class="ticket-message" data-toggle="tooltip" data-placement="left" title="">
+						<div class="message">
+						  
+						</div>
+					  </div>
+					</div>
+					<div class="date-time text-right">
+
+					</div>
+				  </div>
+				</div>
+			</template>
+			<template id="supportChatTemplate" type="text/template">
+				<div class="row ticket-message-block ticket-message-left">
+				  <div class="col-img">
+					<div class="person-img" data-toggle="tooltip" data-placement="bottom" title="{{ ticket['author'] }}">
+					  <img src="assets/image/avatar.png" class="icon w-100">
+					</div>
+				  </div>
+				  <div class="col-custom">
+					<div class="ticketSupportBox d-inline-block">
+					  <div class="ticket-message" data-toggle="tooltip" data-placement="right" title="{{ ticket['time'] }}">
+						<div class="message">                                      
+							
+						</div>
+					  </div>
+					</div>
+					<div class="date-time">
+					  
+					</div>
+				  </div>
+				</div>
+			</template>
+			
+			<script type="text/javascript">
+
+			function appendCustomerMessage(msg){
+			  let template = $.parseHTML($('#clientChatTemplate').html());
+			  let today = new Date();
+			  let time = today.getHours() + ':' + today.getMinutes() + ', ' + today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear();
+
+			  $(template).find('.message').text(msg);
+			  $(template).find('.ticket-message').attr('title',time);
+			  $(template).find('.ticket-message').tooltip();
+			  $(template).find('.date-time').text(time);
+
+			  
+			  $('.pnd-tbox-chat .messages-list .inner').append(template);
+			}
+
+			window.onload = function() {
+				$('[data-toggle="tooltip"]').tooltip();
+				if(window.location.hash == "#open_ticket"){
+				  window.history.pushState("", document.title, window.location.pathname);  
+				  $('#myModal').modal('show');
+				}
+				$('.pnd-tbox-open').click(function(){
+					$('.pnd-msg-box .col-sidebar').toggleClass('show');
+					$(this).toggleClass('show');
+				});
+			}
+			</script>
+			
+                                            <div class="modal fade" id="createTicket">
+                                                <div class="modal-dialog">
+                                                   <div class="modal-content">
+                                                      <!-- Modal Header -->
+                                                      <div class="modal-header">
+                                                         <h4 class="modal-title">Destek Talebi Oluştur</h4>
+                                                         <button type="button" class="close" data-dismiss="modal">×</button>
+                                                      </div>
+                                                      <!-- Modal body -->
+                                                      <div class="modal-body">
+                                                         <div class="payout mb-5">
+															  <form method="post" action="tickets#createTicket">
+																  {% if error %}
+																	<div class="alert alert-dismissible alert-danger {% if site['rtl'] %} rtl-alert {% endif %}">
+																	  <button type="button" class="close" data-dismiss="alert">×</button>
+																	  {{ errorText }}
+																	</div>
+																  {% elseif success %}
+																	<div class="alert alert-dismissible alert-success {% if site['rtl'] %} rtl-alert {% endif %}">
+																	  <button type="button" class="close" data-dismiss="alert">×</button>
+																	  {{ successText }}
+																	</div>
+																  {% endif %}
+																<div class="form-group">
+																  <label for="subject" class="control-label">{{ lang['tickets.subject'] }}</label>
+																	<select class="form-control" id="subject" name="subject">
+																	  {% for subjects in orders %}
+																	   <option value"{{ subjects['subject'] }}">{{ subjects['subject'] }}</option>
+																	  {% endfor %}
+																	</select>  
+																</div>
+																<div class="form-group">
+																  <label for="message" class="control-label">{{ lang['tickets.message'] }}</label>
+																  <textarea class="form-control" rows="7" id="message" name="message">{{ data['message'] }}</textarea>
+																</div>
+																<button type="submit" class="btn btn-primary btn-block">{{ lang['tickets.button'] }}</button>
+															  </form>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                            </div>
+	
+			
+         </div>
+	
+	</div>
+		 
+<script>
+  var hash = location.hash;
+  var TicketModal = new bootstrap.Modal(document.getElementById('createTicket'));
+  
+  if (TicketModal) {
+    document.getElementById('createTicket').addEventListener('hide.bs.modal', (event) => {
+      setTimeout(function(){
+        history.replaceState("", document.title, window.location.pathname);
+      }, 1);
+    });
+  
+    document.getElementById('createTicket').addEventListener('show.bs.modal', event => {
+      window.location.hash = 'createTicket';
+    })
+  
+  }
+  
+  if(hash === '#createTicket') {
+    TicketModal.show();
+  }
+    
+  </script>
+{% include 'main/bootstrap/footer.twig' %}

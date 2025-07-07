@@ -1,0 +1,20 @@
+{% include 'main/diamond/header.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          {% for post in blogList %}
+            <div class="well">
+                <h3>{{ post['blog_title'] }}</h3>
+                {% if post['blog_image'] %}
+                  <p><img src="{{ post['blog_image'] }}" style="width:100%;" alt="{{ post['blog_title'] }}" class="img-responsive"></p>
+                {% endif %}  
+                <div class="img-fluid" style="max-width:100%; word-wrap: break-word;" >{{ post['blog_content'][:150] }}...</div>
+                <a href="{{ site['url'] }}/blog/{{ post['url'] }}" style="width:100%;" class="btn btn-primary">{{ lang['blog.read'] }}</a>
+            </div>
+          {% endfor %}    
+        </div>
+    </div>
+</div>
+
+{% include 'main/diamond/footer.twig' %}
